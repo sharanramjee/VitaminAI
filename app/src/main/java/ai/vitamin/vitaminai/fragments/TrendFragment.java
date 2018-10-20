@@ -2,6 +2,7 @@ package ai.vitamin.vitaminai.fragments;
 
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
 import android.support.design.widget.TabLayout;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentPagerAdapter;
@@ -34,7 +35,8 @@ public class TrendFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_trend, container, false);
-        ViewPager pager = view.findViewById(R.id.charts_vp);
+
+        final ViewPager pager = view.findViewById(R.id.charts_vp);
         FragmentPageAdapter pagerAdapter = new FragmentPageAdapter((Objects.requireNonNull(getActivity())).getSupportFragmentManager());
         pager.setAdapter(pagerAdapter);
 
@@ -46,6 +48,20 @@ public class TrendFragment extends Fragment {
         tabLayout.setTabTextColors(color[2], color[1]);
         tabLayout.setupWithViewPager(pager);
 
+        //pager.setCurrentItem(0);
+
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+    }
+
+
+
+    @Override
+    public void onResume() {
+        super.onResume();
     }
 }
