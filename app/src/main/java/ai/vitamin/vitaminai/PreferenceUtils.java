@@ -8,6 +8,7 @@ public class PreferenceUtils {
 
     public static float getHeight(Context context){
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
+
         return preferences.getFloat("height", Float.parseFloat("0.0"));
     }
 
@@ -25,4 +26,5 @@ public class PreferenceUtils {
         SharedPreferences preferences = PreferenceManager.getDefaultSharedPreferences(context);
         return preferences.getString("name", "google");
     }
+
 }

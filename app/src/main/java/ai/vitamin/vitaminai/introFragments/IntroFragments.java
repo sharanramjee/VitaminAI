@@ -43,7 +43,7 @@ public class IntroFragments extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-       //View view= inflater.inflate(R.layout.fragment_authentication, container, false);
+       View view= inflater.inflate(R.layout.fragment_intro_fragments, container, false);
 
         height = height.findViewById(R.id.textHeight);
         weight = weight.findViewById(R.id.textWeight);
@@ -66,11 +66,13 @@ public class IntroFragments extends Fragment {
                 editor.putInt("age", Integer.parseInt(sAge));
 
                 editor.apply();
-
+                height.setText(sHeight);
+                weight.setText(sWeight);
+                age.setText(sAge);
             }
         });
 
-        return null;
+        return view;
     }
 
 }
