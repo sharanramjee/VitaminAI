@@ -38,6 +38,8 @@ dependencies {
     implementation 'com.google.http-client:google-http-client-gson:1.20.0' exclude module: 'httpclient'
     implementation 'com.google.apis:google-api-services-vision:v1-rev2-1.21.0' exclude module: 'httpclient'
 
+    implementation 'com.github.qapqap:TimelineView:v1.6'
+
     implementation 'com.jakewharton:butterknife:8.7.0'
     annotationProcessor 'com.jakewharton:butterknife-compiler:8.7.0'
 }
