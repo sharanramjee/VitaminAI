@@ -61,15 +61,11 @@ public class IntroFragments extends Fragment {
                 SharedPreferences sharedPref = getActivity().getSharedPreferences("userData",Context.MODE_PRIVATE);
               //  double sHeight = sharedPref.getFloat("sHeight", )
                 SharedPreferences.Editor editor = sharedPref.edit();
-                editor.putString("height",sHeight);
-                editor.putString("weight",sWeight);
-                editor.putString("age", sAge);
+                editor.putFloat("height",Float.parseFloat(sHeight));
+                editor.putFloat("weight",Float.parseFloat(sWeight));
+                editor.putInt("age", Integer.parseInt(sAge));
 
                 editor.apply();
-
-
-
-
 
             }
         });
