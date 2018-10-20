@@ -16,10 +16,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
 import com.google.api.client.googleapis.json.GoogleJsonResponseException;
@@ -43,33 +45,34 @@ import com.google.api.services.vision.v1.model.SafeSearchAnnotation;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
+import ai.vitamin.vitaminai.data.DataMethod;
+import ai.vitamin.vitaminai.objects.Food;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
+    EditText editText;
+    public Double quantity = 0.0;
+    public String str_quantity = "0";
+
     private static final String TAG = "AutoLogger";
     private static final int RECORD_REQUEST_CODE = 101;
     private static final int CAMERA_REQUEST_CODE = 102;
+
+    public String brand_name = "Lays";
 
     private static final String CLOUD_VISION_API_KEY = "AIzaSyDOjwC0hjlIN-CHLO8bTL6lFkbTpv5Cx2c";
 
     @BindView(R.id.btnCamera)
     Button takePicture;
 
-//    @BindView(R.id.imageProgress)
-//    ProgressBar imageUploadProgress;
-
     @BindView(R.id.imageView)
     ImageView imageView;
 
-//    @BindView(R.id.spinnerVisionAPI)
-//    Spinner spinnerVisionAPI;
-
-    @BindView(R.id.visionAPIData)
-    TextView visionAPIData;
     private Feature feature;
     private Bitmap bitmap;
     private String[] visionAPI = new String[]{"LOGO_DETECTION"};
@@ -82,14 +85,11 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
         setContentView(R.layout.layout_auto_logger);
         ButterKnife.bind(this);
 
+        editText = (EditText)findViewById(R.id.editText);
+
         feature = new Feature();
         feature.setType(visionAPI[0]);
         feature.setMaxResults(10);
-
-//        spinnerVisionAPI.setOnItemSelectedListener(this);
-//        ArrayAdapter<String> dataAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, visionAPI);
-//        dataAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-//        spinnerVisionAPI.setAdapter(dataAdapter);
 
         takePicture.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -97,6 +97,38 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
                 takePictureFromCamera();
             }
         });
+
+        Button btnLog = (Button)findViewById(R.id.btnLog);
+        btnLog.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(editText.getText().toString().length() == 0) {
+                    Toast.makeText(AutoLogger.this, "Please enter all the details", Toast.LENGTH_SHORT).show();
+                    return;
+                }
+                else {
+                    Intent intentManual = new Intent(AutoLogger.this, Home.class);
+
+                    quantity = Double.parseDouble(editText.getText().toString());
+                    str_quantity = quantity.toString();
+
+                    ImplementCloudVision.query = brand_name;
+                    try {
+                        ImplementCloudVision.main();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+
+                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, Double.parseDouble(ImplementCloudVision.finalans[0]), Double.parseDouble(ImplementCloudVision.finalans[1]));
+                    DataMethod.addFoodItem(AutoLogger.this, food);
+
+                    startActivity(intentManual);
+
+                    finish();
+                }
+            }
+
+        } );
     }
 
     @Override
@@ -187,7 +219,8 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
             }
 
             protected void onPostExecute(String result) {
-                visionAPIData.setText(result);
+//                visionAPIData.setText(result);
+                brand_name = result;
 //                imageUploadProgress.setVisibility(View.INVISIBLE);
             }
         }.execute();
@@ -281,7 +314,6 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
-
     }
 }
 

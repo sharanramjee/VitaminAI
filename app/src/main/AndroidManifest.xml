@@ -3,8 +3,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="ai.vitamin.vitaminai">
 
-    <!--<uses-permission android:name="android.permission.GET_ACCOUNTS"/>-->
-    <uses-permission android:name="android.permission.INTERNET"/>
+    <!-- <uses-permission android:name="android.permission.GET_ACCOUNTS"/> -->
+    <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.CAMERA" />
 
     <application
@@ -17,21 +17,22 @@
         tools:ignore="GoogleAppIndexingWarning">
         <activity
             android:name=".Home"
-            android:screenOrientation="portrait"
-            android:label="@string/app_name">
+            android:label="@string/app_name"
+            android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".AutoLogger"/>
+        <activity android:name=".AutoLogger" />
 
         <provider
+            android:name=".data.DataProvider"
             android:authorities="ai.vitamin.vitaminai"
-            android:exported="false"
-            android:name=".data.DataProvider"/>
+            android:exported="false" />
 
+        <activity android:name=".ManualLogger"></activity>
     </application>
 
 </manifest>

@@ -1,6 +1,9 @@
 package ai.vitamin.vitaminai.fragments;
 
 import android.annotation.SuppressLint;
+import android.content.res.TypedArray;
+import android.graphics.BitmapFactory;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
@@ -13,13 +16,25 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AbsListView;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
+import android.widget.ListView;
+import android.widget.Toast;
 
+import org.qap.ctimelineview.TimelineRow;
+import org.qap.ctimelineview.TimelineViewAdapter;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
+import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import ai.vitamin.vitaminai.R;
@@ -32,6 +47,12 @@ public class MealsFragment extends Fragment {
     private AppBarLayout appBarLayout;
     private Toolbar toolbar;
     private View view;
+
+    ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
+    ArrayAdapter<TimelineRow> myAdapter;
+
+    public static Integer row;
+    public Integer resID;
 
     public MealsFragment() {
     }
@@ -51,7 +72,6 @@ public class MealsFragment extends Fragment {
 
         view =  inflater.inflate(R.layout.fragment_meals, container, false); //the entire view for meal fragment
         toolbar = view.findViewById(R.id.calendar_toolbar); //the toolbar of the view
-        RecyclerView recyclerView = view.findViewById(R.id.meals_recycle_view); //the recycle view that is displaying all the data
         CalendarView calendarView = view.findViewById(R.id.calendar_cv); //the calendar view
 
         //setting up Action Bar as the Supporting action bar
@@ -96,16 +116,105 @@ public class MealsFragment extends Fragment {
             }
         });
 
-        //setting layout and displaying the content
-        ArrayList<Food> items = new ArrayList<>();
-        items.add(new Food(Calendar.getInstance().getTimeInMillis(), "Beans", 0.5, 1000));
-        items.add(new Food(Calendar.getInstance().getTimeInMillis() + TimeUnit.HOURS.toMillis(1), "Beans", 0.5, 1000));
-        items.add(new Food(Calendar.getInstance().getTimeInMillis() + TimeUnit.HOURS.toMillis(2), "Corn", 0.6, 1000));
-        items.add(new Food(Calendar.getInstance().getTimeInMillis() + TimeUnit.HOURS.toMillis(3), "Milk", 0.7, 1000));
-        items.add(new Food(Calendar.getInstance().getTimeInMillis() + TimeUnit.HOURS.toMillis(4), "Cheese", 0.8, 1000));
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new MealAdapter(getContext(), items));
+
+        // TIMELINE
+        TinyDB tinyDB = new TinyDB(History.this);
+        HomePage.names = tinyDB.getListString("theNames");
+        HomePage.calories = tinyDB.getListString("theCalories");
+        HomePage.dates = tinyDB.getListString("theDates");
+
+        for(row = 0; row <HomePage.names.size(); row++) {
+            timelineRowsList.add(createRandomTimelineRow(row));
+        }
+
+        myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
+                //if true, list will be sorted by date
+                true);
+
+        ListView myListView = view.findViewById(R.id.timeline_listView);
+        myListView.setAdapter(myAdapter);
+
+        myListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+            private int currentVisibleItemCount;
+            private int currentScrollState;
+            private int currentFirstVisibleItem;
+            private int totalItem;
+            private LinearLayout lBelow;
+
+
+            @Override
+            public void onScrollStateChanged(AbsListView view, int scrollState) {
+                // TODO Auto-generated method stub
+                this.currentScrollState = scrollState;
+            }
+
+            @Override
+            public void onScroll(AbsListView view, int firstVisibleItem,
+                                 int visibleItemCount, int totalItemCount) {
+                // TODO Auto-generated method stub
+                this.currentFirstVisibleItem = firstVisibleItem;
+                this.currentVisibleItemCount = visibleItemCount;
+                this.totalItem = totalItemCount;
+            }
+        });
+
+//        //if you wish to handle the clicks on the rows
+//        AdapterView.OnItemClickListener adapterListener = new AdapterView.OnItemClickListener() {
+//            @Override
+//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+//                TimelineRow row = timelineRowsList.get(position);
+//                Toast.makeText(MealsFragment.this, row.getTitle(), Toast.LENGTH_SHORT).show();
+//            }
+//        };
+//        myListView.setOnItemClickListener(adapterListener);
 
         return view;
+    }
+
+    //Method to create new Timeline Row
+    private TimelineRow createRandomTimelineRow(int id) {
+
+        // Create new timeline row (pass your Id)
+        TimelineRow myRow = new TimelineRow(id);
+
+        //to set the row Date (optional)
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        try {
+            date = sdf.parse(HomePage.dates.get(id));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        myRow.setDate(date);
+
+        //to set the row Title (optional)
+        myRow.setTitle(HomePage.names.get(id));
+
+        //to set the row Description (optional)
+        myRow.setDescription(HomePage.calories.get(id) + " calories");
+
+        //to set the row bitmap image (optional)
+        final TypedArray imgs = getResources().obtainTypedArray(R.array.random_images_array);
+        final Random rand = new Random();
+        final int rndInt = rand.nextInt(imgs.length());
+        final int resID = imgs.getResourceId(rndInt, 0);
+        myRow.setImage(BitmapFactory.decodeResource(getResources(), resID));
+
+        //to set row Below Line Color (optional)
+        myRow.setBellowLineColor(Color.parseColor("#FFFFFFFF"));
+
+        //to set row Below Line Size in dp (optional)
+        myRow.setBellowLineSize(4);
+
+        //to set row Date text color (optional)
+        myRow.setDateColor(Color.parseColor("#FFFFFFFF"));
+
+        //to set row Title text color (optional)
+        myRow.setTitleColor(Color.parseColor("#FFFFFFFF"));
+
+        //to set row Description text color (optional)
+        myRow.setDescriptionColor(Color.parseColor("#FFFFFFFF"));
+
+        return myRow;
     }
 }

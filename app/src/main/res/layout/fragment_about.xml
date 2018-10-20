@@ -16,7 +16,7 @@
         android:layout_height="wrap_content"
         android:text="User Information"
         android:gravity="center"
-        android:padding="16dp"
+        android:padding="0dp"
         android:textColor="@color/white"
         android:textSize="30sp"/>
 
