@@ -17,9 +17,8 @@ import ai.vitamin.vitaminai.fragments.HomeFragment;
 import ai.vitamin.vitaminai.fragments.MealsFragment;
 import ai.vitamin.vitaminai.fragments.TrendFragment;
 
-public class Home extends AppCompatActivity {
+public class Home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
 
-    Fragment fragment;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,48 +26,51 @@ public class Home extends AppCompatActivity {
         setContentView(R.layout.activity_home);
 
         //getting the views
-        final FrameLayout frameLayout = findViewById(R.id.activity_home_frame_layout);
         BottomNavigationView bottomNavigationView = findViewById(R.id.navigation);
 
-        //setting on tap behavior for the bottom navigation view
-        BottomNavigationView.OnNavigationItemSelectedListener mOnNavigationItemSelectedListener
-                = new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                switch (item.getItemId()) {
-                    case R.id.navigation_home:
-                        fragment = HomeFragment.newInstance();
-                        break;
-                    case R.id.navigation_trends:
-                        fragment = TrendFragment.newInstance();
-                        break;
-                    case R.id.navigation_meal_logs:
-                        fragment = MealsFragment.newInstance();
-                        break;
-                    case R.id.navigation_about:
-                        fragment = AboutFragment.newInstance();
-                        break;
-                }
-
-                //checking if fragment exists
-                if (fragment == null)
-                {
-                    return false;
-                }
-                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
-                getSupportFragmentManager().beginTransaction().add(R.id.activity_home_frame_layout, fragment).addToBackStack(null).commit();
-                return true;
-            }
-        };
-
         //setting the behavior declared above to the bottom navigation object
-        bottomNavigationView.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
+        bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         //displaying the first view -> navigation home
-        getSupportFragmentManager().beginTransaction().add(R.id.activity_home_frame_layout, new HomeFragment()).commit();
-
+        loadFragment(HomeFragment.newInstance()); 
 
 
     }
 
+    @Override
+    public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+        Fragment fragment = null;
+
+        switch (item.getItemId()) {
+            case R.id.navigation_home:
+                fragment = HomeFragment.newInstance();
+                break;
+            case R.id.navigation_trends:
+                fragment = TrendFragment.newInstance();
+                break;
+            case R.id.navigation_meal_logs:
+                fragment = MealsFragment.newInstance();
+                break;
+            case R.id.navigation_about:
+                fragment = AboutFragment.newInstance();
+                break;
+        }
+
+        return loadFragment(fragment);
+    }
+
+    private boolean loadFragment(Fragment fragment)
+    {
+        if (fragment != null)
+        {
+            getSupportFragmentManager()
+                    .beginTransaction()
+                    .replace(R.id.activity_home_frame_layout, fragment)
+                    .commit();
+            return true;
+        }
+
+        return false;
+    }
 }
