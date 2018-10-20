@@ -3,6 +3,7 @@ package ai.vitamin.vitaminai.introFragments;
 import android.content.Context;
 import android.net.Uri;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -46,6 +47,10 @@ public class Authentication extends Fragment {
                 String email = username.getText().toString();
                 String fullName = name.getText().toString();
                 String pass = password.getText().toString();
+                PreferenceManager.getDefaultSharedPreferences(getContext())
+                        .edit()
+                        .putString("name", fullName)
+                        .apply();
             }
         });
 
