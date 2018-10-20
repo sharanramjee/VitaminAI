@@ -20,7 +20,10 @@ import ai.vitamin.vitaminai.R;
 public class Authentication extends Fragment {
     
     Button submit;
-    Button signIn;
+    EditText name;
+    EditText username;
+    EditText password;
+
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,13 +36,16 @@ public class Authentication extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
        View view = inflater.inflate(R.layout.fragment_authentication, container, false);
-
+        username = (EditText) getActivity().findViewById(R.id.email);
+        name = (EditText) getActivity().findViewById(R.id.Name);
+        password = (EditText) getActivity().findViewById(R.id.password);
         submit = submit.findViewById(R.id.submit);
-        signIn=signIn.findViewById(R.id.gSignIn);
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-
+                String email = username.getText().toString();
+                String fullName = name.getText().toString();
+                String pass = password.getText().toString();
             }
         });
 
