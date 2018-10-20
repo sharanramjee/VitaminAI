@@ -19,6 +19,8 @@ import ai.vitamin.vitaminai.fragments.TrendFragment;
 
 public class Home extends AppCompatActivity {
 
+    Fragment fragment;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,7 +35,6 @@ public class Home extends AppCompatActivity {
                 = new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-                Fragment fragment = null;
                 switch (item.getItemId()) {
                     case R.id.navigation_home:
                         fragment = HomeFragment.newInstance();
@@ -48,7 +49,14 @@ public class Home extends AppCompatActivity {
                         fragment = AboutFragment.newInstance();
                         break;
                 }
-                getSupportFragmentManager().beginTransaction().add(R.id.activity_home_frame_layout, fragment).commit();
+
+                //checking if fragment exists
+                if (fragment == null)
+                {
+                    return false;
+                }
+                getSupportFragmentManager().beginTransaction().remove(fragment).commit();
+                getSupportFragmentManager().beginTransaction().add(R.id.activity_home_frame_layout, fragment).addToBackStack(null).commit();
                 return true;
             }
         };
