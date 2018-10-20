@@ -3,6 +3,7 @@ package ai.vitamin.vitaminai;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
+import android.util.Log;
 
 import ai.vitamin.vitaminai.introFragments.IntroFragments;
 
@@ -76,6 +77,13 @@ public class PreferenceUtils {
                 .putString("password", password)
                 .apply();
 
+    }
+
+    public static void startup (Context context, boolean status) {
+        PreferenceManager.getDefaultSharedPreferences(context)
+                .edit()
+                .putBoolean("firstRun", status)
+                .apply();
     }
 
 
