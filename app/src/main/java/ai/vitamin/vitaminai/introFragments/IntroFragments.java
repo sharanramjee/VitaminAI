@@ -5,6 +5,7 @@ import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -66,9 +67,18 @@ public class IntroFragments extends Fragment {
                 editor.putInt("age", Integer.parseInt(sAge));
 
                 editor.apply();
+
                 height.setText(sHeight);
                 weight.setText(sWeight);
                 age.setText(sAge);
+
+                SharedPreferences settings = getActivity().getSharedPreferences("prefs", 0);
+                SharedPreferences.Editor editorSettings = settings.edit();
+                editorSettings.putBoolean("firstRun", false);
+                editorSettings.apply();
+
+                boolean firstRun = settings.getBoolean("firstRun", true);
+                Log.d("TAG1", "firstRun: " + Boolean.valueOf(firstRun).toString());
             }
         });
 

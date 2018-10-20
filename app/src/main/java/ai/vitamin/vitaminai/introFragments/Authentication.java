@@ -1,10 +1,12 @@
 package ai.vitamin.vitaminai.introFragments;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +53,14 @@ public class Authentication extends Fragment {
                         .edit()
                         .putString("name", fullName)
                         .apply();
+
+                SharedPreferences settings = getActivity().getSharedPreferences("prefs", 0);
+                SharedPreferences.Editor editorSettings = settings.edit();
+                editorSettings.putBoolean("firstRun", false);
+                editorSettings.apply();
+
+                boolean firstRun = settings.getBoolean("firstRun", true);
+                Log.d("TAG1", "firstRun: " + Boolean.valueOf(firstRun).toString());
             }
         });
 
