@@ -41,7 +41,7 @@ public class PreferenceUtils {
     public static void setAge ( Context context, Float age) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
-                .putFloat("height", age)
+                .putFloat("age", age)
                 .apply();
 
     }
@@ -49,7 +49,7 @@ public class PreferenceUtils {
     public static void setWeight ( Context context, Float weight) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
-                .putFloat("height", weight)
+                .putFloat("weight", weight)
                 .apply();
 
     }
@@ -57,7 +57,7 @@ public class PreferenceUtils {
     public static void setFullName ( Context context, String name) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
-                .putString("height", name)
+                .putString("name", name)
                 .apply();
 
     }
@@ -65,7 +65,7 @@ public class PreferenceUtils {
     public static void setUsername ( Context context, String email) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
-                .putString("height", email)
+                .putString("email", email)
                 .apply();
 
     }
@@ -73,7 +73,7 @@ public class PreferenceUtils {
     public static void setPassword ( Context context, String password) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
-                .putString("height", password)
+                .putString("password", password)
                 .apply();
 
     }
