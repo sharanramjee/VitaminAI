@@ -5,8 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.TrendFragment"
-    android:orientation="vertical"
-    android:background="#FFF">
+    android:orientation="vertical">
 
     <android.support.design.widget.TabLayout
         android:id="@+id/weight_bmi_cal_tL"

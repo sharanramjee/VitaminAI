@@ -6,8 +6,7 @@
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    tools:context=".fragments.MealsFragment"
-    android:background="#FFF">
+    tools:context=".fragments.MealsFragment">
 
     <android.support.design.widget.AppBarLayout
         android:id="@+id/calendar_app_bar"

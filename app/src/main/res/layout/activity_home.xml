@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout
+<LinearLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -7,20 +7,28 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".Home"
+    android:background="@drawable/green_back"
     android:orientation="vertical">
 
     <FrameLayout
         android:id="@+id/activity_home_frame_layout"
-        android:layout_height="wrap_content"
+        android:layout_height="0dp"
+        android:layout_weight="1"
         android:layout_width="match_parent"
-        />
+        >
+
+    </FrameLayout>
 
     <android.support.design.widget.BottomNavigationView
         android:id="@+id/navigation"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="?android:attr/windowBackground"
         android:layout_gravity="bottom"
+        android:background="@android:color/transparent"
+        app:itemBackground="@android:color/transparent"
+        app:itemIconTint="@android:color/white"
+        app:itemTextColor="@android:color/white"
         app:menu="@menu/navigation" />
 
-</android.support.design.widget.CoordinatorLayout>
+
+</LinearLayout>
