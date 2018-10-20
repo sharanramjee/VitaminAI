@@ -1,16 +1,11 @@
 package ai.vitamin.vitaminai;
 
 import android.os.Bundle;
-import android.provider.Settings;
 import android.support.annotation.NonNull;
 import android.support.design.widget.BottomNavigationView;
-import android.support.v4.app.FragmentTransaction;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.MenuItem;
-import android.widget.FrameLayout;
 import android.support.v4.app.Fragment;
-import android.widget.Toast;
 
 import ai.vitamin.vitaminai.fragments.AboutFragment;
 import ai.vitamin.vitaminai.fragments.HomeFragment;
@@ -32,8 +27,7 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
         bottomNavigationView.setOnNavigationItemSelectedListener(this);
 
         //displaying the first view -> navigation home
-        loadFragment(HomeFragment.newInstance()); 
-
+        loadFragment(HomeFragment.newInstance());
 
     }
 
