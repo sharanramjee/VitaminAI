@@ -117,15 +117,15 @@ public class MealsFragment extends Fragment {
         });
 
 
-        // TIMELINE
-        TinyDB tinyDB = new TinyDB(History.this);
-        HomePage.names = tinyDB.getListString("theNames");
-        HomePage.calories = tinyDB.getListString("theCalories");
-        HomePage.dates = tinyDB.getListString("theDates");
-
-        for(row = 0; row <HomePage.names.size(); row++) {
-            timelineRowsList.add(createRandomTimelineRow(row));
-        }
+//        // TIMELINE
+//        TinyDB tinyDB = new TinyDB(History.this);
+//        HomePage.names = tinyDB.getListString("theNames");
+//        HomePage.calories = tinyDB.getListString("theCalories");
+//        HomePage.dates = tinyDB.getListString("theDates");
+//
+//        for(row = 0; row <HomePage.names.size(); row++) {
+//            timelineRowsList.add(createRandomTimelineRow(row));
+//        }
 
         myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
                 //if true, list will be sorted by date
@@ -178,20 +178,20 @@ public class MealsFragment extends Fragment {
         TimelineRow myRow = new TimelineRow(id);
 
         //to set the row Date (optional)
-        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-        Date date = new Date();
-        try {
-            date = sdf.parse(HomePage.dates.get(id));
-        } catch (ParseException e) {
-            e.printStackTrace();
-        }
-        myRow.setDate(date);
-
-        //to set the row Title (optional)
-        myRow.setTitle(HomePage.names.get(id));
-
-        //to set the row Description (optional)
-        myRow.setDescription(HomePage.calories.get(id) + " calories");
+//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+//        Date date = new Date();
+//        try {
+//            date = sdf.parse(HomePage.dates.get(id));
+//        } catch (ParseException e) {
+//            e.printStackTrace();
+//        }
+//        myRow.setDate(date);
+//
+//        //to set the row Title (optional)
+//        myRow.setTitle(HomePage.names.get(id));
+//
+//        //to set the row Description (optional)
+//        myRow.setDescription(HomePage.calories.get(id) + " calories");
 
         //to set the row bitmap image (optional)
         final TypedArray imgs = getResources().obtainTypedArray(R.array.random_images_array);

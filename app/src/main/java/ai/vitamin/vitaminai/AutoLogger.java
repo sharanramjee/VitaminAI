@@ -112,14 +112,19 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
                     quantity = Double.parseDouble(editText.getText().toString());
                     str_quantity = quantity.toString();
 
-                    ImplementCloudVision.query = brand_name;
-                    try {
-                        ImplementCloudVision.main();
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
+//                    ImplementCloudVision.query = brand_name;
+                    System.out.println(brand_name);
 
-                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, Double.parseDouble(ImplementCloudVision.finalans[0]), Double.parseDouble(ImplementCloudVision.finalans[1]));
+                    System.out.println("Test");
+
+//                    try {
+//                        ImplementCloudVision.main(brand_name);
+//                    } catch (IOException e) {
+//                        e.printStackTrace();
+//                    }
+
+                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), "Sour Patch", 2, 120, 12);
+//                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, Double.parseDouble(ImplementCloudVision.finalans[0]), Double.parseDouble(ImplementCloudVision.finalans[1]));
                     DataMethod.addFoodItem(AutoLogger.this, food);
 
                     startActivity(intentManual);
