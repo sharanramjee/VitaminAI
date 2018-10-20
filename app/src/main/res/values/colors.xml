@@ -1,7 +1,84 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#008577</color>
-    <color name="colorPrimaryDark">#93c756</color>
-    <color name="colorAccent">#D81B60</color>
+    <color name="colorPrimary">#58ae46</color>
+    <color name="colorPrimaryDark">#20ab20</color>
+    <color name="colorAccent">#1a7110</color>
     <color name="colorNotificationBar">#76a64b</color>
+
+    <!-- Color for an meal time with magnitude 0 and 2 -->
+    <color name="meal1">#0d1338</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 2 and 3 -->
+    <color name="meal2">#201f4d</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 3 and 4 -->
+    <color name="meal3">#152240</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 4 and 5 -->
+    <color name="meal4">#18294e</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 5 and 6 -->
+    <color name="meal5">#272d46</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 6 and 7 -->
+    <color name="meal6">#1c4253</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 7 and 8 -->
+    <color name="meal7">#e75f40</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 8 and 9 -->
+    <color name="meal8">#fc9d1b</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 9 and 10 -->
+    <color name="meal9">#ffdd00</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 10 and 11 -->
+    <color name="meal10">#41a4b1</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 11 and 12 -->
+    <color name="meal11">#41e7fd</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 12 and 13 -->
+    <color name="meal12">#22e5ff</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 13 and 14 -->
+    <color name="meal13">#00e1ff</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 14 and 15 -->
+    <color name="meal14">#00e1ff</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 15 and 16 -->
+    <color name="meal15">#00e1ff</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 16 and 17 -->
+    <color name="meal16">#00e1ff</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 17 and 18 -->
+    <color name="meal17">#e96f1d</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 18 and 19 -->
+    <color name="meal18">#e96f1d</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 19 and 20 -->
+    <color name="meal19">#e96f1d</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 20 and 21 -->
+    <color name="meal20">#D93218</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 21 and 22 -->
+    <color name="meal21">#2b30d1</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 22 and 23 -->
+    <color name="meal22">#1b20bc</color>
+
+    <!-- Magnitude circle color for an meal time with magnitude between 23 and 24 -->
+    <color name="meal23">#090c71</color>
+
+    <!-- Colors for the labels -->
+    <color name="black_semi_transparent">#56000000</color>
+    <color name="white">#FFF</color>
+
+    <color name="main_activity_tab_Indicator_color">#ffffff</color>
+    <color name="main_activity_tab_selected_text_color">#ffffff</color>
+    <color name="main_activity_tab_not_selected_text_color">#deb7b7b7</color>
 </resources>

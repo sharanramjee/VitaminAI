@@ -1,9 +1,11 @@
 package ai.vitamin.vitaminai.fragments;
 
+import android.annotation.SuppressLint;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.AppBarLayout;
 import android.support.design.widget.CollapsingToolbarLayout;
+import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -18,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import ai.vitamin.vitaminai.R;
 import ai.vitamin.vitaminai.objects.Food;
@@ -49,7 +52,7 @@ public class MealsFragment extends Fragment {
         view =  inflater.inflate(R.layout.fragment_meals, container, false); //the entire view for meal fragment
         toolbar = view.findViewById(R.id.calendar_toolbar); //the toolbar of the view
         RecyclerView recyclerView = view.findViewById(R.id.meals_recycle_view); //the recycle view that is displaying all the data
-        CalendarView calendarView = view.findViewById(R.id.calendar_view); //the calendar view
+        CalendarView calendarView = view.findViewById(R.id.calendar_cv); //the calendar view
 
         //setting up Action Bar as the Supporting action bar
         ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
@@ -61,6 +64,7 @@ public class MealsFragment extends Fragment {
             boolean isShow = true;
             int scrollRange = -1;
 
+            @SuppressLint("RestrictedApi")
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
                 if (scrollRange == -1){
@@ -93,8 +97,14 @@ public class MealsFragment extends Fragment {
         });
 
         //setting layout and displaying the content
+        ArrayList<Food> items = new ArrayList<>();
+        items.add(new Food(Calendar.getInstance().getTimeInMillis(), "Beans", 0.5, 1000));
+        items.add(new Food(Calendar.getInstance().getTimeInMillis() + TimeUnit.HOURS.toMillis(1), "Beans", 0.5, 1000));
+        items.add(new Food(Calendar.getInstance().getTimeInMillis() + TimeUnit.HOURS.toMillis(2), "Corn", 0.6, 1000));
+        items.add(new Food(Calendar.getInstance().getTimeInMillis() + TimeUnit.HOURS.toMillis(3), "Milk", 0.7, 1000));
+        items.add(new Food(Calendar.getInstance().getTimeInMillis() + TimeUnit.HOURS.toMillis(4), "Cheese", 0.8, 1000));
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-        recyclerView.setAdapter(new MealAdapter(new ArrayList<Food>()));
+        recyclerView.setAdapter(new MealAdapter(getContext(), items));
 
         return view;
     }

@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
+import com.getbase.floatingactionbutton.FloatingActionButton;
+import com.getbase.floatingactionbutton.FloatingActionsMenu;
+
 import ai.vitamin.vitaminai.AutoLogger;
 import ai.vitamin.vitaminai.R;
 
@@ -29,16 +32,19 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        View view =  inflater.inflate(R.layout.fragment_home, container, false);
-        Button button = view.findViewById(R.id.to_activity_b);
-        button.setOnClickListener(new View.OnClickListener() {
+        View view =  inflater.inflate(R.layout.fragment_home, container, false); //the main view for the layout
+        FloatingActionsMenu menu = view.findViewById(R.id.home_floating_action_menu); //the floating action button that will open the menu option
+        FloatingActionButton addFood = view.findViewById(R.id.add_food_fb); //options for the floating action button
+
+        //behavior for floating action buttons
+        addFood.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(getContext(), AutoLogger.class);
                 startActivity(intent);
             }
         });
+
 
         return view;
     }

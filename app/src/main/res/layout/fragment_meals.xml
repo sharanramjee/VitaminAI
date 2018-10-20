@@ -1,8 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.design.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.design.widget.CoordinatorLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.MealsFragment"
     android:background="#FFF">
@@ -40,7 +42,7 @@
                 android:layout_gravity="bottom">
 
                 <CalendarView
-                    android:id="@+id/calendar_view"
+                    android:id="@+id/calendar_cv"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"/>
 
@@ -49,15 +51,6 @@
         </android.support.design.widget.CollapsingToolbarLayout>
     </android.support.design.widget.AppBarLayout>
 
-    <android.support.v4.widget.NestedScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <android.support.v7.widget.RecyclerView
-            android:id="@+id/meals_recycle_view"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"/>
-
-    </android.support.v4.widget.NestedScrollView>
+    <include layout="@layout/content_meal"/>
 
 </android.support.design.widget.CoordinatorLayout>
