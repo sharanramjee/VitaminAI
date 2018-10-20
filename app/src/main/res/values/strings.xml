@@ -1,6 +1,7 @@
 <resources>
     <string name="app_name">VitaminAI</string>
     <string name="title_home">Home</string>
-    <string name="title_dashboard">Dashboard</string>
-    <string name="title_notifications">Notifications</string>
+    <string name="title_trends">Trends</string>
+    <string name="title_meal_logs">Meal Logs</string>
+    <string name="title_about">About</string>
 </resources>
