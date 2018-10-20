@@ -11,7 +11,10 @@ import android.net.Uri;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 
+import java.util.Calendar;
+import java.util.GregorianCalendar;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import ai.vitamin.vitaminai.data.DataContract.Food;
 import ai.vitamin.vitaminai.data.DataContract.Charts;

@@ -21,10 +21,14 @@ public class DataHelper extends SQLiteOpenHelper {
 
         final String USER_CREATE_TABLE = "CREATE TABLE " + DataContract.Food.TABLE_NAME + " (" +
                 Food._ID + " INTEGER PRIMARY KEY, " +
-                Food.COLUMN_TIME_ADDED + " LONG NOT NULL, " +
+                Food.COLUMN_TIME_MONTH + " LONG NOT NULL, " +
+                Food.COLUMN_TIME_DAY + " LONG NOT NULL, " +
+                Food.COLUMN_TIME_YEAR + " LONG NOT NULL, " +
+                Food.COLUMN_TIME_HOUR + " LONG NOT NULL, " +
                 Food.COLUMN_FOOD_NAME + " TEXT NOT NULL, " +
                 Food.COLUMN_CONSUMED + " REAL NOT NULL, " +
-                Food.COLUMN_CALORIES + " REAL NOT NULL);";
+                Food.COLUMN_CALORIES + " REAL NOT NULL, " +
+                Food.COLUMN_FAT + " REAL NOT NULL);";
         db.execSQL(USER_CREATE_TABLE);
 
         final String TODAY_MENU_CREATE_TABLE = "CREATE TABLE " + Charts.TABLE_NAME + " (" +

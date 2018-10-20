@@ -1,15 +1,18 @@
 package ai.vitamin.vitaminai.objects;
 
 import java.text.SimpleDateFormat;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
 public class Food {
 
+    private int id;
     private long date; //the date the user chooses for this specific item
     private String name; //the name of the item
     private double portion; //digit from 0 to 1 that represent how much of the item they ate
     private double totalCalories; //total amount of calories for all the items
+    private double totalFats;
 
     /*
     Parameter: date, long, the date
@@ -19,12 +22,24 @@ public class Food {
     Description: Constructor Method
     Return: void, Nothing
      */
-    public Food(long date, String name, double portion, double totalCalories)
+    public Food(int id, long date, String name, double portion, double totalCalories, double totalFats)
     {
+        this.id = id;
         this.date = date;
         this.name = name;
         this.portion = portion;
         this.totalCalories = totalCalories;
+        this.totalFats = totalFats;
+    }
+
+    public Food(long date, String name, double portion, double totalCalories, double totalFats)
+    {
+        this.id = -1;
+        this.date = date;
+        this.name = name;
+        this.portion = portion;
+        this.totalCalories = totalCalories;
+        this.totalFats = totalFats;
     }
 
     /*
@@ -38,6 +53,10 @@ public class Food {
         return number.format(new Date(date));
     }
 
+    public long getLongTime(){
+        return date;
+    }
+
     /*
     Parameter: nothing
     Description: returns how intense the color of the time should be based off of when they ate it
@@ -48,12 +67,27 @@ public class Food {
         return Integer.parseInt(density.format(new Date(date)));
     }
 
-
     public String getName(){
         return name;
     }
 
     public String getItemCalories(){
         return Double.toString(totalCalories * portion);
+    }
+
+    public String getItemFats(){
+        return Double.toString(totalFats * portion);
+    }
+
+    public double getPorition(){
+        return (float) portion;
+    }
+
+    public double getTotalCalories(){
+        return totalCalories;
+    }
+
+    public double getTotalFat(){
+        return totalFats;
     }
 }

@@ -19,27 +19,39 @@ public class DataContract {
         public static final Uri EVENT_CONTENT_URI = CONTENT_URI.buildUpon().appendPath(PATH_DATA).appendPath(TABLE_NAME).build();
 
         //column name
-        public static final String COLUMN_TIME_ADDED = "time";
+        public static final String COLUMN_TIME_MONTH = "month";
+        public static final String COLUMN_TIME_DAY = "day";
+        public static final String COLUMN_TIME_YEAR = "year";
+        public static final String COLUMN_TIME_HOUR = "hour";
         public static final String COLUMN_FOOD_NAME = "name";
         public static final String COLUMN_CONSUMED ="amountcosumned";
         public static final String COLUMN_CALORIES ="totalcalories";
+        public static final String COLUMN_FAT = "totalfat";
 
 
         //the array for the database
-        public final String[] PROJECTION_ARRAY = {
+        public static final String[] PROJECTION_ARRAY = {
                 Food._ID,
-                COLUMN_TIME_ADDED,
+                COLUMN_TIME_MONTH,
+                COLUMN_TIME_DAY,
+                COLUMN_TIME_YEAR,
+                COLUMN_TIME_HOUR,
                 COLUMN_FOOD_NAME,
                 COLUMN_CONSUMED,
                 COLUMN_CALORIES,
+                COLUMN_FAT
         };
 
         //The int index
         public static final int COLUMN_ID_ARRAY_INDEX = 0;
-        public static final int COLUMN_TIME_ARRAY_INDEX = 1;
-        public static final int COLUMN_FOOD_NAME_ARRAY_INDEX = 2;
-        public static final int COLUMN_AMOUNT_CONSUMED_INDEX = 3;
-        public static final int COLUMN_CALORIES_INDEX = 4;
+        public static final int COLUMN_TIME_MONTH_INDEX = 1;
+        public static final int COLUMN_TIME_DAY_INDEX = 2;
+        public static final int COLUMN_TIME_YEAR_INDEX = 3;
+        public static final int COLUMN_TIME_HOUR_INDEX = 4;
+        public static final int COLUMN_FOOD_NAME_ARRAY_INDEX = 5;
+        public static final int COLUMN_AMOUNT_CONSUMED_INDEX = 6;
+        public static final int COLUMN_CALORIES_INDEX = 7;
+        public static final int COLUMN_COLUMN_FAT = 8;
 
     }
 
