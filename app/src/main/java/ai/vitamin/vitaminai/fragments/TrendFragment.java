@@ -67,7 +67,7 @@ public class TrendFragment extends Fragment {
         for (int i = 0;  i < allWeight.size(); i++)
         {
             long time = allWeight.get(i).getDate();
-            entriesw.add(new Entry((float) (time-timeStart), (float) (allWeight.get(i).getWeight())));
+            entriesw.add(new Entry((float) ((time-timeStart) / TimeUnit.HOURS.toMillis(1)), (float) (allWeight.get(i).getWeight())));
         }
         if (entriesw.size() != 0) {
             LineDataSet dataSet = new LineDataSet(entriesw, "Weight-Label");
@@ -80,7 +80,7 @@ public class TrendFragment extends Fragment {
         for (int i = 0;  i < allWeight.size(); i++)
         {
             long time = allWeight.get(i).getDate();
-            entriesw.add(new Entry((float) (time-timeStart), (float) (allWeight.get(i).getBMI())));
+            entriesbmi.add(new Entry((float) ((time-timeStart)/ TimeUnit.HOURS.toMillis(1)), (float) (allWeight.get(i).getBMI())));
         }
         if (entriesbmi.size() != 0) {
             LineDataSet dataSetbmi = new LineDataSet(entriesbmi, "BMI-Label");

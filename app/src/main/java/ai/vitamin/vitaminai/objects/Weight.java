@@ -46,7 +46,7 @@ public class Weight {
     }
 
     public double getBMI(){
-        return weight / (weight * weight) / 10000;
+        return weight / ((height * height) / 10000);
     }
 
 }
