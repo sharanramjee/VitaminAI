@@ -46,4 +46,6 @@ dependencies {
     implementation 'com.google.code.gson:gson:2.8.3'
     implementation 'com.loopj.android:android-async-http:1.4.9'
     implementation 'cz.msebera.android:httpclient:4.4.1.2'
+
+    implementation 'com.github.shchurov:horizontalwheelview:0.9.5'
 }

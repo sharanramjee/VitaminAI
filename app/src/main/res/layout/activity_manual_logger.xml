@@ -83,9 +83,8 @@
             android:backgroundTint="@android:color/background_light"
             android:ems="10"
             android:fontFamily="sans-serif-condensed"
-            android:inputType="number"
             android:textAlignment="textEnd"
-            android:textColor="@android:color/background_light"/>
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 
     <LinearLayout
@@ -116,7 +115,6 @@
             android:backgroundTint="@android:color/background_light"
             android:ems="10"
             android:fontFamily="sans-serif-condensed"
-            android:inputType="number|date"
             android:textAlignment="textEnd"
             android:textColor="@android:color/background_light" />
     </LinearLayout>

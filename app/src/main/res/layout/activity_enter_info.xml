@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/green_back"
+    tools:context=".EnterInfo">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:layout_marginTop="50dp"
+        android:text="User Information"
+        android:textColor="@color/white"
+        android:textSize="30sp" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="16dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Enter Name"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            android:layout_marginLeft="16dp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/editText1"
+            android:layout_width="110sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/background_light"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:textAlignment="textEnd"
+            android:layout_marginRight="16dp"
+            android:textColor="@android:color/background_light" />
+
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Enter Height (cm)"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvAngle1"
+        android:layout_width="52dp"
+        android:layout_height="29dp"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+        android:id="@+id/horizontalWheelView1"
+        android:layout_width="324dp"
+        android:layout_height="63dp"
+        android:paddingBottom="32dp"
+        app:activeColor="@android:color/white"
+        app:normalColor="@android:color/white"
+        tools:activeColor="@android:color/white"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Enter Weight (kg)"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvAngle2"
+        android:layout_width="52dp"
+        android:layout_height="29dp"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+        android:id="@+id/horizontalWheelView2"
+        android:layout_width="324dp"
+        android:layout_height="63dp"
+        android:paddingBottom="32dp"
+        app:activeColor="@android:color/white"
+        app:normalColor="@android:color/white"
+        tools:activeColor="@android:color/white"
+        android:layout_gravity="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Enter Age (years)"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <TextView
+        android:id="@+id/tvAngle3"
+        android:layout_width="52dp"
+        android:layout_height="29dp"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+        android:id="@+id/horizontalWheelView3"
+        android:layout_width="324dp"
+        android:layout_height="63dp"
+        android:paddingBottom="32dp"
+        app:activeColor="@android:color/white"
+        app:normalColor="@android:color/white"
+        tools:activeColor="@android:color/white"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Next"
+        android:layout_marginBottom="20dp"
+        android:textColor="@android:color/white"
+        android:typeface="normal"
+        android:layout_gravity="center"
+        />
+
+
+</android.support.v7.widget.LinearLayoutCompat>

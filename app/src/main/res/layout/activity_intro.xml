@@ -25,4 +25,28 @@
         android:layout_weight="1"
         android:src="@drawable/app_logo_trans"/>
 
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:gravity="center"
+        android:padding="20dp"
+        android:text="Welcome to Vitamin.AI, a Machine Learning driven Health and Fitness Tracking App"
+        android:textColor="@color/white"
+        android:textSize="18sp" />
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Next"
+        android:layout_marginBottom="20dp"
+        android:textColor="@android:color/white"
+        android:typeface="normal"
+        android:layout_gravity="center"
+        />
+
 </android.support.v7.widget.LinearLayoutCompat>

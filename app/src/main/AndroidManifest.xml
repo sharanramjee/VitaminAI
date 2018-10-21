@@ -34,7 +34,8 @@
             android:exported="false" />
 
         <activity android:name=".ManualLogger" />
-        <activity android:name=".Intro"></activity>
+        <activity android:name=".Intro" />
+        <activity android:name=".EnterInfo"></activity>
     </application>
 
 </manifest>
