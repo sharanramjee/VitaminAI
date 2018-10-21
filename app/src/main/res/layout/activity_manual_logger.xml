@@ -1,12 +1,143 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.v7.widget.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/green_back"
+    android:orientation="vertical"
     tools:context=".ManualLogger">
 
+    <TextView
+        android:id="@+id/textView1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Manual Meal Logger"
+        android:textAlignment="center"
+        android:textColor="@color/white"
+        android:textSize="30sp"
+        android:paddingTop="50dp"/>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="270dp"/>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Name of Product"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="110sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/background_light"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textView3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Quantity of Product"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/editText2"
+            android:layout_width="110sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/background_light"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:inputType="number"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/background_light"/>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/textView4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Date of Consumption"
+            android:textColor="@color/white"
+            android:textSize="18sp"
+            />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1"/>
+
+        <EditText
+            android:id="@+id/editText3"
+            android:layout_width="110sp"
+            android:layout_height="wrap_content"
+            android:backgroundTint="@android:color/background_light"
+            android:ems="10"
+            android:fontFamily="sans-serif-condensed"
+            android:inputType="number|date"
+            android:textAlignment="textEnd"
+            android:textColor="@android:color/background_light" />
+    </LinearLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="20dp"/>
+
+    <Button
+        android:id="@+id/btnLog"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark"
+        android:fontFamily="sans-serif"
+        android:text="Log Meal"
+        android:textColor="@android:color/white"
+        android:typeface="normal"
+        android:layout_gravity="center"
+        />
 
 
-</android.support.v7.widget.LinearLayout>
+
+</android.support.v7.widget.LinearLayoutCompat>

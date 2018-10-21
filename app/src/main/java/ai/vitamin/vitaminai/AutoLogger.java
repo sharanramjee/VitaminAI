@@ -14,13 +14,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.api.client.extensions.android.http.AndroidHttp;
@@ -62,14 +58,12 @@ import cz.msebera.android.httpclient.entity.StringEntity;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
-import org.json.JSONObject;
-
-
 public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
     EditText editText;
     public Double quantity = 0.0;
     public String str_quantity = "0";
+    public Double calories = 0.0;
 
     private static final String TAG = "AutoLogger";
     private static final int RECORD_REQUEST_CODE = 101;
@@ -122,14 +116,10 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
                     Intent intentManual = new Intent(AutoLogger.this, Home.class);
 
                     quantity = Double.parseDouble(editText.getText().toString());
-                    str_quantity = quantity.toString();
 
                     connectNutrionix(brand_name);
-//                    System.out.println(brand_name);
-
-//                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), "Sour Patch", 2, 120, 12);
-//                    System.out.println(ImplementCloudVision.finalans[0]);
-                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, 120, 12);
+                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, calories,0.0);
+                    System.out.println(food.toString());
                     DataMethod.addFoodItem(AutoLogger.this, food);
 
                     startActivity(intentManual);
@@ -182,6 +172,7 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
     protected void finishCalculate(final JSONObject jsonResult) {
         StringBuilder foodName = new StringBuilder();
         StringBuilder foodCal = new StringBuilder();
+        StringBuilder foodWeight = new StringBuilder();
 
         try {
             JSONArray foods = jsonResult.getJSONArray("foods");
@@ -189,22 +180,17 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
             while (!foods.isNull(i)) {
 
                 JSONObject eachFood = foods.getJSONObject(i);
-                foodName.append(eachFood.getString("food_name") + "\n");
-                foodCal.append(eachFood.getString("nf_calories")+ " Cal"+ '\n');
-//                totalCal += eachFood.getInt("nf_calories");
+                foodName.append(eachFood.getString("food_name"));
+                foodCal.append(eachFood.getString("nf_calories"));
+                foodWeight.append(eachFood.getString("serving_qty"));
                 i++;
             }
         } catch (JSONException e) {
             e.printStackTrace();
         }
-
-//        TextView listComponent = findViewById(R.id.textView3);
-//        listComponent.setText(foodName.toString());
-//
-//        TextView listCal = findViewById(R.id.textView4);
-//        listCal.setText(foodCal.toString());
-        System.out.println(foodName.toString());
-        System.out.println(foodCal.toString());
+        brand_name = foodName.toString();
+        calories = Double.parseDouble(foodCal.toString()) / Double.parseDouble(foodWeight.toString());
+//        System.out.println(calories.toString());
     }
 
     @Override
@@ -252,7 +238,6 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
     }
 
     private void callCloudVision(final Bitmap bitmap, final Feature feature) {
-//        imageUploadProgress.setVisibility(View.VISIBLE);
         final List<Feature> featureList = new ArrayList<>();
         featureList.add(feature);
 
@@ -295,9 +280,7 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
             }
 
             protected void onPostExecute(String result) {
-//                visionAPIData.setText(result);
                 brand_name = result;
-//                imageUploadProgress.setVisibility(View.INVISIBLE);
             }
         }.execute();
     }
@@ -392,5 +375,3 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
     public void onNothingSelected(AdapterView<?> adapterView) {
     }
 }
-
-

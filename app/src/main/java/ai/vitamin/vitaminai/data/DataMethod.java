@@ -36,9 +36,9 @@ public class DataMethod {
             int y = cursor.getInt(DataContract.Food.COLUMN_TIME_YEAR_INDEX);
             int h = cursor.getInt(DataContract.Food.COLUMN_TIME_HOUR_INDEX);
             String n = cursor.getString(DataContract.Food.COLUMN_FOOD_NAME_ARRAY_INDEX);
-            float consum = cursor.getInt(DataContract.Food.COLUMN_AMOUNT_CONSUMED_INDEX);
-            float calor = cursor.getInt(DataContract.Food.COLUMN_CALORIES_INDEX);
-            float fat = cursor.getInt(DataContract.Food.COLUMN_COLUMN_FAT);
+            double consum = cursor.getInt(DataContract.Food.COLUMN_AMOUNT_CONSUMED_INDEX);
+            double calor = cursor.getInt(DataContract.Food.COLUMN_CALORIES_INDEX);
+            double fat = cursor.getInt(DataContract.Food.COLUMN_COLUMN_FAT);
             Calendar calendar = Calendar.getInstance();
             calendar.set(y, m, d,h,0);
 
