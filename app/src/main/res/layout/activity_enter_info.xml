@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:background="@drawable/green_back"
-    tools:context=".EnterInfo">
+    tools:context=".introscreen.EnterInfo">
 
     <TextView
         android:layout_width="match_parent"
@@ -25,7 +25,7 @@
         android:layout_marginTop="16dp">
 
         <TextView
-            android:id="@+id/textView4"
+            android:id="@+id/ddajfljlfa"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:fontFamily="sans-serif-condensed"
@@ -41,7 +41,7 @@
             android:layout_weight="1"/>
 
         <EditText
-            android:id="@+id/editText1"
+            android:id="@+id/nameet"
             android:layout_width="110sp"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/background_light"
@@ -64,7 +64,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/tvAngle1"
+        android:id="@+id/heighttv"
         android:layout_width="52dp"
         android:layout_height="29dp"
         android:fontFamily="sans-serif-condensed"
@@ -94,7 +94,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/tvAngle2"
+        android:id="@+id/weighttv"
         android:layout_width="52dp"
         android:layout_height="29dp"
         android:fontFamily="sans-serif-condensed"
@@ -124,7 +124,7 @@
         android:textSize="18sp" />
 
     <TextView
-        android:id="@+id/tvAngle3"
+        android:id="@+id/agetv"
         android:layout_width="52dp"
         android:layout_height="29dp"
         android:fontFamily="sans-serif-condensed"
@@ -151,6 +151,7 @@
         android:background="@android:color/holo_green_dark"
         android:fontFamily="sans-serif-condensed"
         android:text="Next"
+        android:onClick="tapNext"
         android:layout_marginBottom="20dp"
         android:textColor="@android:color/white"
         android:typeface="normal"
