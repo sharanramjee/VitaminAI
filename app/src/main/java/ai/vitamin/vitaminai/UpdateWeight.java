@@ -8,7 +8,11 @@ import android.widget.TextView;
 
 import com.github.shchurov.horizontalwheelview.HorizontalWheelView;
 
+import java.util.Calendar;
 import java.util.Locale;
+
+import ai.vitamin.vitaminai.data.DataMethod;
+import ai.vitamin.vitaminai.objects.Weight;
 
 public class UpdateWeight extends AppCompatActivity {
 
@@ -57,6 +61,9 @@ public class UpdateWeight extends AppCompatActivity {
     public void tapNext(View view) {
         PreferenceUtils.setStartup(this, true);
         PreferenceUtils.setWeight(this, Float.parseFloat(weighttv.getText().toString()));
+
+        Weight weight = new Weight(Calendar.getInstance().getTimeInMillis(), Double.parseDouble(weighttv.getText().toString()) , (double) PreferenceUtils.getHeight(this));
+        DataMethod.addWeightItem(this, weight);
 
         Intent intent = new Intent(this, Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);

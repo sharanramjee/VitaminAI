@@ -61,8 +61,10 @@ public class TrendFragment extends Fragment {
         //weight
         ArrayList<Entry> entriesw = new ArrayList<>(); //list of all the coordinates
         ArrayList<Weight> allWeight = DataMethod.getAllWeight(getContext());
+        if (allWeight.size() == 0)
+            return;
         long timeStart = allWeight.get(0).getDate();
-        for (int i = 0;  i < 10; i++)
+        for (int i = 0;  i < allWeight.size(); i++)
         {
             long time = allWeight.get(i).getDate();
             entriesw.add(new Entry((float) (time-timeStart), (float) (allWeight.get(i).getWeight())));
@@ -75,7 +77,7 @@ public class TrendFragment extends Fragment {
 
         //BMI
         ArrayList<Entry> entriesbmi = new ArrayList<>();
-        for (int i = 0;  i < 10; i++)
+        for (int i = 0;  i < allWeight.size(); i++)
         {
             long time = allWeight.get(i).getDate();
             entriesw.add(new Entry((float) (time-timeStart), (float) (allWeight.get(i).getBMI())));

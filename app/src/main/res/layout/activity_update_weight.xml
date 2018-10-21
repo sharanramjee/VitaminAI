@@ -59,14 +59,14 @@
         style="@style/Widget.AppCompat.Button"
         android:layout_width="111dp"
         android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="250dp"
+        android:layout_marginBottom="20dp"
         android:background="@android:color/holo_green_dark"
         android:fontFamily="sans-serif-condensed"
-        android:layout_marginTop="250dp"
+        android:onClick="tapNext"
         android:text="Next"
-        android:layout_marginBottom="20dp"
         android:textColor="@android:color/white"
-        android:typeface="normal"
-        android:layout_gravity="center"
-        />
+        android:typeface="normal" />
 
 </android.support.v7.widget.LinearLayoutCompat>
