@@ -49,7 +49,7 @@ public class Food {
      */
     public String getTime()
     {
-        SimpleDateFormat number = new SimpleDateFormat("h", Locale.US);
+        SimpleDateFormat number = new SimpleDateFormat("h:m a", Locale.US);
         return number.format(new Date(date));
     }
 
@@ -79,7 +79,7 @@ public class Food {
         return Double.toString(totalFats * portion);
     }
 
-    public double getPorition(){
+    public double getPortion(){
         return (float) portion;
     }
 

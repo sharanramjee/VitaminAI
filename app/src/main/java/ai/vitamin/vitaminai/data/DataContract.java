@@ -23,6 +23,7 @@ public class DataContract {
         public static final String COLUMN_TIME_DAY = "day";
         public static final String COLUMN_TIME_YEAR = "year";
         public static final String COLUMN_TIME_HOUR = "hour";
+        public static final String COLUMN_TIME_MIN = "min";
         public static final String COLUMN_FOOD_NAME = "name";
         public static final String COLUMN_CONSUMED ="amountcosumned";
         public static final String COLUMN_CALORIES ="totalcalories";
@@ -36,6 +37,7 @@ public class DataContract {
                 COLUMN_TIME_DAY,
                 COLUMN_TIME_YEAR,
                 COLUMN_TIME_HOUR,
+                COLUMN_TIME_MIN,
                 COLUMN_FOOD_NAME,
                 COLUMN_CONSUMED,
                 COLUMN_CALORIES,
@@ -48,10 +50,11 @@ public class DataContract {
         public static final int COLUMN_TIME_DAY_INDEX = 2;
         public static final int COLUMN_TIME_YEAR_INDEX = 3;
         public static final int COLUMN_TIME_HOUR_INDEX = 4;
-        public static final int COLUMN_FOOD_NAME_ARRAY_INDEX = 5;
-        public static final int COLUMN_AMOUNT_CONSUMED_INDEX = 6;
-        public static final int COLUMN_CALORIES_INDEX = 7;
-        public static final int COLUMN_COLUMN_FAT = 8;
+        public static final int COLUMN_TIME_MIN_INDEX = 5;
+        public static final int COLUMN_FOOD_NAME_ARRAY_INDEX = 6;
+        public static final int COLUMN_AMOUNT_CONSUMED_INDEX = 7;
+        public static final int COLUMN_CALORIES_INDEX = 8;
+        public static final int COLUMN_COLUMN_FAT = 9;
 
     }
 
