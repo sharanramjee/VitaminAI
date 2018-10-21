@@ -82,7 +82,7 @@ public class HomeFragment extends Fragment implements SensorEventListener {
 
         FloatingActionButton updateWeight = view.findViewById(R.id.update_weight); //options for the floating action button
         //behavior for floating action buttons
-        goForRun.setOnClickListener(new View.OnClickListener() {
+        updateWeight.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent4 = new Intent(getContext(), UpdateWeight.class);
