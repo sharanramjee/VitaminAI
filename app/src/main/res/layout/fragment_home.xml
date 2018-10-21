@@ -14,20 +14,27 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_margin="16dp"
+        android:backgroundTint="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintRight_toRightOf="parent"
-        fab:fab_addButtonPlusIconColor="#FFF"
+        fab:fab_addButtonColorNormal="@color/white"
+        fab:fab_addButtonPlusIconColor="@color/colorAccent"
         fab:fab_addButtonSize="normal"
+        fab:fab_addButtonStrokeVisible="false"
         fab:fab_expandDirection="up"
         fab:fab_labelStyle="@style/menu_labels_style"
-        fab:fab_labelsPosition="left">
+        fab:fab_labelsPosition="left"
+
+        fab:menu_labels_colorNormal="@color/white"
+        fab:menu_labels_colorPressed="@color/white"
+        fab:menu_labels_colorRipple="@color/white">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_food_fb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_stroke_visible="true"
-            fab:fab_title="Add Food to Tracker"/>
+            fab:fab_title="Add Food to Tracker" />
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
