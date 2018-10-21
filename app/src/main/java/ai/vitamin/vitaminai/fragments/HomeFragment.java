@@ -45,6 +45,18 @@ public class HomeFragment extends Fragment {
             }
         });
 
+//        FloatingActionsMenu menu2 = view.findViewById(R.id.home_floating_action_menu2); //the floating action button that will open the menu option
+//        FloatingActionButton minusFood = view.findViewById(R.id.minus_food_fb); //options for the floating action button
+//
+//        //behavior for floating action buttons
+//        minusFood.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent2 = new Intent(getContext(), MapsActivity.class);
+//                startActivity(intent2);
+//            }
+//        });
+
 
         return view;
     }

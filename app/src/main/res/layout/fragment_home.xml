@@ -24,17 +24,25 @@
         fab:fab_expandDirection="up"
         fab:fab_labelStyle="@style/menu_labels_style"
         fab:fab_labelsPosition="left"
-
-        fab:menu_labels_colorNormal="@color/white"
-        fab:menu_labels_colorPressed="@color/white"
-        fab:menu_labels_colorRipple="@color/white">
+        fab:menu_backgroundColor="#ccffffff"
+        fab:menu_colorNormal="#f17a0a"
+        fab:menu_colorPressed="#f17a0a"
+        fab:menu_colorRipple="#ccffffff"
+        fab:menu_labels_colorNormal="#f17a0a"
+        fab:menu_labels_colorPressed="#f17a0a"
+        fab:menu_labels_colorRipple="#ccffffff">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/add_food_fb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_stroke_visible="true"
-            fab:fab_title="Add Food to Tracker" />
+            fab:fab_title="Add Food to Tracker"
+
+            android:src="@drawable/fab_add"
+            fab:fab_colorNormal="@color/colorAccent"
+            fab:fab_colorPressed="@color/colorAccent"
+            fab:fab_colorRipple="@color/colorAccent"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
@@ -55,5 +63,6 @@
         fab:layout_constraintStart_toStartOf="parent"
         fab:layout_constraintTop_toTopOf="parent"
         fab:layout_constraintVertical_bias="0.060000002" />
+
 
 </android.support.constraint.ConstraintLayout>
