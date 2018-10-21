@@ -9,11 +9,14 @@ import android.widget.TextView;
 
 import com.github.shchurov.horizontalwheelview.HorizontalWheelView;
 
+import java.util.Calendar;
 import java.util.Locale;
 
 import ai.vitamin.vitaminai.Home;
 import ai.vitamin.vitaminai.PreferenceUtils;
 import ai.vitamin.vitaminai.R;
+import ai.vitamin.vitaminai.data.DataMethod;
+import ai.vitamin.vitaminai.objects.Weight;
 
 public class EnterInfo extends AppCompatActivity {
 
@@ -91,6 +94,9 @@ public class EnterInfo extends AppCompatActivity {
         PreferenceUtils.setHeight(this, Float.parseFloat(heighttv.getText().toString()));
         PreferenceUtils.setWeight(this, Float.parseFloat(weighttv.getText().toString()));
         PreferenceUtils.setAge(this, Integer.parseInt(agetv.getText().toString()));
+
+        Weight weight = new Weight(Calendar.getInstance().getTimeInMillis(), Double.parseDouble(weighttv.getText().toString()) , (double) PreferenceUtils.getHeight(this));
+        DataMethod.addWeightItem(this, weight);
 
         Intent intent = new Intent(this, Home.class);
         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP | Intent.FLAG_ACTIVITY_NEW_TASK);
