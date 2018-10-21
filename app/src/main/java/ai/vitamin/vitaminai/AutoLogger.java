@@ -119,7 +119,6 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
 
                     connectNutrionix(brand_name);
 
-
                     startActivity(intentManual);
 
                     finish();

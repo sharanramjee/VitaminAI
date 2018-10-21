@@ -50,14 +50,14 @@
 
         <EditText
             android:id="@+id/editText"
-            android:layout_width="110sp"
+            android:layout_width="160sp"
             android:layout_height="wrap_content"
             android:backgroundTint="@android:color/background_light"
             android:ems="10"
             android:fontFamily="sans-serif-condensed"
             android:inputType="number"
             android:textAlignment="textEnd"
-            android:textColor="@android:color/background_light"/>
+            android:textColor="@android:color/background_light" />
     </LinearLayout>
 
     <LinearLayout

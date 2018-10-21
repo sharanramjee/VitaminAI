@@ -53,4 +53,6 @@ dependencies {
     implementation 'cz.msebera.android:httpclient:4.4.1.2'
 
     implementation 'com.github.shchurov:horizontalwheelview:0.9.5'
+
+    implementation 'com.algolia:algoliasearch-android:3.+'
 }

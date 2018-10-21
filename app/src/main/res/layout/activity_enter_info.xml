@@ -42,13 +42,13 @@
 
         <EditText
             android:id="@+id/nameet"
-            android:layout_width="110sp"
+            android:layout_width="200sp"
             android:layout_height="wrap_content"
+            android:layout_marginRight="16dp"
             android:backgroundTint="@android:color/background_light"
             android:ems="10"
             android:fontFamily="sans-serif-condensed"
             android:textAlignment="textEnd"
-            android:layout_marginRight="16dp"
             android:textColor="@android:color/background_light" />
 
     </LinearLayout>
