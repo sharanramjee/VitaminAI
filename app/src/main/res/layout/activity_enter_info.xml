@@ -81,6 +81,7 @@
         app:activeColor="@android:color/white"
         app:normalColor="@android:color/white"
         tools:activeColor="@android:color/white"
+        android:layout_marginLeft="3dp"
         android:layout_gravity="center"/>
 
     <TextView
@@ -111,6 +112,7 @@
         app:activeColor="@android:color/white"
         app:normalColor="@android:color/white"
         tools:activeColor="@android:color/white"
+        android:layout_marginLeft="3dp"
         android:layout_gravity="center"/>
 
     <TextView
@@ -141,6 +143,7 @@
         app:activeColor="@android:color/white"
         app:normalColor="@android:color/white"
         tools:activeColor="@android:color/white"
+        android:layout_marginLeft="3dp"
         android:layout_gravity="center"/>
 
     <Button
