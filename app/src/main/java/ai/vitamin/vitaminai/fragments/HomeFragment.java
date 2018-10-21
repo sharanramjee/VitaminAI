@@ -23,6 +23,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import ai.vitamin.vitaminai.AutoLogger;
 import ai.vitamin.vitaminai.ManualLogger;
+import ai.vitamin.vitaminai.fragments.MapsActivity;
 import ai.vitamin.vitaminai.R;
 
 public class HomeFragment extends Fragment implements SensorEventListener {
@@ -68,15 +69,15 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             }
         });
 
-//        FloatingActionButton goForRun = view.findViewById(R.id.open_maps); //options for the floating action button
-//        //behavior for floating action buttons
-//        goForRun.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent3 = new Intent(getContext(), MapsActivity.class);
-//                startActivity(intent3);
-//            }
-//        });
+        FloatingActionButton goForRun = view.findViewById(R.id.open_maps); //options for the floating action button
+        //behavior for floating action buttons
+        goForRun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent3 = new Intent(getContext(), MapsActivity.class);
+               startActivity(intent3);
+            }
+        });
 
         sensorManager = (SensorManager) getContext().getSystemService(Context.SENSOR_SERVICE);
         tv_steps = (TextView) view.findViewById(R.id.tv_steps);
