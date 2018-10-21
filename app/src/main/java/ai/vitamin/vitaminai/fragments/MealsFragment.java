@@ -1,4 +1,3 @@
-/*
 package ai.vitamin.vitaminai.fragments;
 
 import android.annotation.SuppressLint;
@@ -14,6 +13,7 @@ import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -39,10 +39,18 @@ import java.util.Random;
 import java.util.concurrent.TimeUnit;
 
 import ai.vitamin.vitaminai.R;
+import ai.vitamin.vitaminai.data.DataMethod;
 import ai.vitamin.vitaminai.objects.Food;
 import ai.vitamin.vitaminai.recycleview.MealAdapter;
 
+import static com.loopj.android.http.AsyncHttpClient.log;
+
 public class MealsFragment extends Fragment {
+
+    public ArrayList<ArrayList<String>> meals;
+    public ArrayList<String> meal_times;
+    public ArrayList<String> meal_names;
+    public ArrayList<String> meal_calories;
 
     private CollapsingToolbarLayout collapsingToolbarLayout;
     private AppBarLayout appBarLayout;
@@ -51,7 +59,6 @@ public class MealsFragment extends Fragment {
 
     ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
     ArrayAdapter<TimelineRow> myAdapter;
-
     public static Integer row;
     public Integer resID;
 
@@ -71,7 +78,12 @@ public class MealsFragment extends Fragment {
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        view =  inflater.inflate(R.layout.fragment_meals, container, false); //the entire view for meal fragment
+        meals = DataMethod.getUIElements(getContext(), new Date());
+        meal_times = meals.get(0);
+        meal_names = meals.get(1);
+        meal_calories = meals.get(2);
+
+        view = inflater.inflate(R.layout.fragment_meals, container, false); //the entire view for meal fragment
         toolbar = view.findViewById(R.id.calendar_toolbar); //the toolbar of the view
         CalendarView calendarView = view.findViewById(R.id.calendar_cv); //the calendar view
 
@@ -88,15 +100,15 @@ public class MealsFragment extends Fragment {
             @SuppressLint("RestrictedApi")
             @Override
             public void onOffsetChanged(AppBarLayout appBarLayout, int i) {
-                if (scrollRange == -1){
+                if (scrollRange == -1) {
                     scrollRange = appBarLayout.getTotalScrollRange();
                 }
-                if (scrollRange + i == 0){
+                if (scrollRange + i == 0) {
                     LinearLayout linearLayout = view.findViewById(R.id.activity_calendar_ll);
                     linearLayout.setVisibility(View.GONE);
                     collapsingToolbarLayout.setTitle(Objects.requireNonNull(getContext()).getString(R.string.title_meal_logs));
                     isShow = true;
-                }else if (isShow){
+                } else if (isShow) {
                     LinearLayout linearLayout = view.findViewById(R.id.activity_calendar_ll);
                     linearLayout.setVisibility(View.VISIBLE);
                     collapsingToolbarLayout.setTitle("");
@@ -116,17 +128,16 @@ public class MealsFragment extends Fragment {
                 calendar.set(year, month, date);
             }
         });
+//        return view;
+//    }
+//}
 
 
 //        // TIMELINE
-//        TinyDB tinyDB = new TinyDB(History.this);
-//        HomePage.names = tinyDB.getListString("theNames");
-//        HomePage.calories = tinyDB.getListString("theCalories");
-//        HomePage.dates = tinyDB.getListString("theDates");
-//
-//        for(row = 0; row <HomePage.names.size(); row++) {
-//            timelineRowsList.add(createRandomTimelineRow(row));
-//        }
+        System.out.println(Integer.toString(meal_names.size()));
+        for(row = 0; row < meal_names.size(); row++) {
+            timelineRowsList.add(createRandomTimelineRow(row));
+        }
 
         myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
                 //if true, list will be sorted by date
@@ -178,6 +189,9 @@ public class MealsFragment extends Fragment {
         // Create new timeline row (pass your Id)
         TimelineRow myRow = new TimelineRow(id);
 
+        Date new_date = new Date();
+        System.out.println(new_date.toString());
+
         //to set the row Date (optional)
 //        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 //        Date date = new Date();
@@ -186,13 +200,13 @@ public class MealsFragment extends Fragment {
 //        } catch (ParseException e) {
 //            e.printStackTrace();
 //        }
-//        myRow.setDate(date);
-//
-//        //to set the row Title (optional)
-//        myRow.setTitle(HomePage.names.get(id));
-//
-//        //to set the row Description (optional)
-//        myRow.setDescription(HomePage.calories.get(id) + " calories");
+        myRow.setDate(new_date);
+
+        //to set the row Title (optional)
+        myRow.setTitle(meal_names.get(id));
+
+        //to set the row Description (optional)
+        myRow.setDescription(meal_calories.get(id) + " Calories");
 
         //to set the row bitmap image (optional)
         final TypedArray imgs = getResources().obtainTypedArray(R.array.random_images_array);
@@ -219,4 +233,3 @@ public class MealsFragment extends Fragment {
         return myRow;
     }
 }
-*/

@@ -71,7 +71,7 @@ public class DataMethod {
         context.getContentResolver().insert(DataContract.Food.EVENT_CONTENT_URI, contentValues);
     }
 
-    public ArrayList<ArrayList<String>> getUIElements(Context context, Date date){
+    public static ArrayList<ArrayList<String>> getUIElements(Context context, Date date){
         ArrayList<ArrayList<String>> formattingIt = new ArrayList<>();
         ArrayList<Food> allFoods = getAllFood(context, date);
         for (int i = 0; i < 4; i++){

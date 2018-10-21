@@ -119,7 +119,7 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
 
                     connectNutrionix(brand_name);
                     Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, calories,0.0);
-                    System.out.println(food.toString());
+//                    System.out.println(food.toString());
                     DataMethod.addFoodItem(AutoLogger.this, food);
 
                     startActivity(intentManual);

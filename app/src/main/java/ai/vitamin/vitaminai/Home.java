@@ -10,6 +10,7 @@ import android.support.v4.app.Fragment;
 import ai.vitamin.vitaminai.fragments.AboutFragment;
 import ai.vitamin.vitaminai.fragments.HomeFragment;
 //import ai.vitamin.vitaminai.fragments.MealsFragment;
+import ai.vitamin.vitaminai.fragments.MealsFragment;
 import ai.vitamin.vitaminai.fragments.TrendFragment;
 
 public class Home extends AppCompatActivity implements BottomNavigationView.OnNavigationItemSelectedListener{
@@ -44,7 +45,7 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
                 fragment = TrendFragment.newInstance();
                 break;
             case R.id.navigation_meal_logs:
-              //  fragment = MealsFragment.newInstance();
+                fragment = MealsFragment.newInstance();
                 break;
             case R.id.navigation_about:
                 fragment = AboutFragment.newInstance();
