@@ -21,11 +21,13 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
+import java.util.concurrent.TimeUnit;
 
 import ai.vitamin.vitaminai.R;
 import ai.vitamin.vitaminai.data.DataMethod;
 import ai.vitamin.vitaminai.fragments.chartFragments.FragmentPageAdapter;
 import ai.vitamin.vitaminai.objects.Food;
+import ai.vitamin.vitaminai.objects.Weight;
 
 import static java.lang.Math.pow;
 
@@ -58,9 +60,12 @@ public class TrendFragment extends Fragment {
 
         //weight
         ArrayList<Entry> entriesw = new ArrayList<>(); //list of all the coordinates
+        ArrayList<Weight> allWeight = DataMethod.getAllWeight(getContext());
+        long timeStart = allWeight.get(0).getDate();
         for (int i = 0;  i < 10; i++)
         {
-            entriesw.add(new Entry(i, i));
+            long time = allWeight.get(i).getDate();
+            entriesw.add(new Entry((float) (time-timeStart), (float) (allWeight.get(i).getWeight())));
         }
         if (entriesw.size() != 0) {
             LineDataSet dataSet = new LineDataSet(entriesw, "Weight-Label");
@@ -72,7 +77,8 @@ public class TrendFragment extends Fragment {
         ArrayList<Entry> entriesbmi = new ArrayList<>();
         for (int i = 0;  i < 10; i++)
         {
-            //entriesbmi.add(new Entry(i, i * i));
+            long time = allWeight.get(i).getDate();
+            entriesw.add(new Entry((float) (time-timeStart), (float) (allWeight.get(i).getBMI())));
         }
         if (entriesbmi.size() != 0) {
             LineDataSet dataSetbmi = new LineDataSet(entriesbmi, "BMI-Label");

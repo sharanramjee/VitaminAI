@@ -28,6 +28,10 @@ public class Weight {
     }
 
 
+    public long getDate(){
+        return date;
+    }
+
     public double getHeight()
     {
         return height;
@@ -39,6 +43,10 @@ public class Weight {
 
     public int getId(){
         return id;
+    }
+
+    public double getBMI(){
+        return weight / (weight * weight) / 10000;
     }
 
 }

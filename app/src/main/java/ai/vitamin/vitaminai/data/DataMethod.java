@@ -92,7 +92,8 @@ public class DataMethod {
 
     public static ArrayList<Weight> getAllWeight(Context context){
         ArrayList<Weight> allweight = new ArrayList<>();
-        Cursor cursor = context.getContentResolver().query(DataContract.Food.EVENT_CONTENT_URI, DataContract.Food.PROJECTION_ARRAY, null, null, null);
+        @SuppressLint("Recycle")
+        Cursor cursor = context.getContentResolver().query(DataContract.Charts.EVENT_CONTENT_URI, DataContract.Charts.PROJECTION_ARRAY, null, null, null);
         assert cursor != null;
         cursor.moveToPosition(-1);
         while(cursor.moveToNext()){
@@ -113,4 +114,23 @@ public class DataMethod {
         }
         return allweight;
     }
+
+    public static void addWeightItem(Context context, Weight weight){
+        SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.US);
+        SimpleDateFormat month = new SimpleDateFormat("M", Locale.US);
+        SimpleDateFormat day = new SimpleDateFormat("d", Locale.US);
+        SimpleDateFormat hour = new SimpleDateFormat("k", Locale.US);
+        SimpleDateFormat min = new SimpleDateFormat("m", Locale.US);
+        ContentValues contentValues = new ContentValues();
+        Date date = new Date(weight.getDate());
+        contentValues.put(DataContract.Charts.COLUMN_MONTH, month.format(date));
+        contentValues.put(DataContract.Charts.COLUMN_YEAR, year.format(date));
+        contentValues.put(DataContract.Charts.COLUMN_DAY, day.format(date));
+        contentValues.put(DataContract.Charts.COLUMN_HOUR, hour.format(date));
+        contentValues.put(DataContract.Charts.COLUMN_MIN, min.format(date));
+        contentValues.put(DataContract.Charts.COLUMN_WEIGHT, weight.getWeight());
+        contentValues.put(DataContract.Charts.COLUMN_HEIGHT, weight.getHeight());
+        context.getContentResolver().insert(DataContract.Charts.EVENT_CONTENT_URI, contentValues);
+    }
+
 }

@@ -41,9 +41,9 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewModel>
     @Override
     public void onBindViewHolder(@NonNull MealViewModel MealViewModel, final int i) {
         Food item = allFoods.get(i);
-        MealViewModel.mTime.setText("Time Eatened: " + item.getTime());
+        MealViewModel.mTime.setText("Time Eatened: " + Integer.toString(Integer.valueOf(item.getTime())));
         MealViewModel.mName.setText(item.getName());
-        MealViewModel.mCal.setText("Number of calories: " + item.getItemCalories() + "cals");
+        MealViewModel.mCal.setText("Number of calories: " + Integer.toString((int) (item.getTotalCalories() * item.getPortion())));
 
         //setting the image
         @SuppressLint("Recycle")
