@@ -1,5 +1,6 @@
 package ai.vitamin.vitaminai;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -39,10 +40,10 @@ public class PreferenceUtils {
 
     }
 
-    public static void setAge ( Context context, Float age) {
+    public static void setAge ( Context context, int age) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
-                .putFloat("age", age)
+                .putInt("age", age)
                 .apply();
 
     }
@@ -79,11 +80,16 @@ public class PreferenceUtils {
 
     }
 
-    public static void startup (Context context, boolean status) {
+    public static void setStartup(Context context, boolean status) {
         PreferenceManager.getDefaultSharedPreferences(context)
                 .edit()
                 .putBoolean("firstRun", status)
                 .apply();
+    }
+
+    public static boolean didStartUp(Context context){
+        return PreferenceManager.getDefaultSharedPreferences(context)
+                .getBoolean("firstRun", false);
     }
 
 

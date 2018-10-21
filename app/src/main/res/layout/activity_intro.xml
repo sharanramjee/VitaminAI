@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:background="@drawable/green_back"
     android:orientation="vertical"
-    tools:context=".Intro">
+    tools:context=".introscreen.Intro">
 
     <TextView
         android:layout_width="match_parent"
@@ -43,6 +43,7 @@
         android:background="@android:color/holo_green_dark"
         android:fontFamily="sans-serif-condensed"
         android:text="Next"
+        android:onClick="tapNext"
         android:layout_marginBottom="20dp"
         android:textColor="@android:color/white"
         android:typeface="normal"
