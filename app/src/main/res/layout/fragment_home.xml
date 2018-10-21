@@ -9,6 +9,76 @@
     tools:context=".fragments.HomeFragment"
     android:background="@drawable/green_back">
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/textView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="45dp"
+            android:background="@android:color/transparent"
+            android:fontFamily="sans-serif-condensed"
+            android:text="Home"
+            android:gravity="center"
+            android:textColor="@android:color/white"
+            android:textSize="30sp"
+            />
+
+        <TextView
+            android:id="@+id/tv_steps"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="0"
+            android:layout_marginTop="200dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Number of steps walked today:"
+            android:layout_marginTop="160dp"
+            android:textAlignment="center"
+            android:textColor="@android:color/white"
+            android:textSize="18sp" />
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.dinuscxj.progressbar.CircleProgressBar
+            android:id="@+id/line_progress"
+            android:layout_width="175dp"
+            android:layout_height="179dp"
+            android:max="2000"
+            android:progressTint="@android:color/background_light"
+            android:layout_marginTop="200dp"
+            android:layout_gravity="center"
+
+            app:draw_progress_text="false"
+            app:progress_background_color="@android:color/transparent"
+            app:progress_end_color="@android:color/background_light"
+            app:progress_start_color="@android:color/background_light"
+            app:progress_text_color="@android:color/background_light"
+            app:progress_text_size="24sp"
+            app:style="solid_line"
+            android:layout_marginStart="8dp"
+            android:layout_marginEnd="8dp" />
+    </LinearLayout>
+
     <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/home_floating_action_menu"
         android:layout_width="wrap_content"
@@ -69,24 +139,6 @@
             fab:fab_colorRipple="@color/colorAccent"/>
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:background="@android:color/transparent"
-        android:fontFamily="sans-serif-condensed"
-        android:text="Home"
-        android:textAlignment="center"
-        android:textColor="@android:color/white"
-        android:textSize="30sp"
-        fab:layout_constraintBottom_toBottomOf="parent"
-        fab:layout_constraintEnd_toEndOf="parent"
-        fab:layout_constraintHorizontal_bias="0.498"
-        fab:layout_constraintStart_toStartOf="parent"
-        fab:layout_constraintTop_toTopOf="parent"
-        fab:layout_constraintVertical_bias="0.060000002" />
 
 
 </android.support.constraint.ConstraintLayout>
