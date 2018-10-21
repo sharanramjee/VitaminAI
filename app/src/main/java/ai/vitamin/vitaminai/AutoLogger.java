@@ -42,8 +42,13 @@ import com.google.api.services.vision.v1.model.Image;
 import com.google.api.services.vision.v1.model.ImageProperties;
 import com.google.api.services.vision.v1.model.SafeSearchAnnotation;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
@@ -52,6 +57,13 @@ import ai.vitamin.vitaminai.data.DataMethod;
 import ai.vitamin.vitaminai.objects.Food;
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import cz.msebera.android.httpclient.entity.StringEntity;
+
+import com.loopj.android.http.AsyncHttpClient;
+import com.loopj.android.http.JsonHttpResponseHandler;
+
+import org.json.JSONObject;
+
 
 public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -112,19 +124,12 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
                     quantity = Double.parseDouble(editText.getText().toString());
                     str_quantity = quantity.toString();
 
-//                    ImplementCloudVision.query = brand_name;
-                    System.out.println(brand_name);
+                    connectNutrionix(brand_name);
+//                    System.out.println(brand_name);
 
-                    System.out.println("Test");
-
-//                    try {
-//                        ImplementCloudVision.main(brand_name);
-//                    } catch (IOException e) {
-//                        e.printStackTrace();
-//                    }
-
-                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), "Sour Patch", 2, 120, 12);
-//                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, Double.parseDouble(ImplementCloudVision.finalans[0]), Double.parseDouble(ImplementCloudVision.finalans[1]));
+//                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), "Sour Patch", 2, 120, 12);
+//                    System.out.println(ImplementCloudVision.finalans[0]);
+                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, 120, 12);
                     DataMethod.addFoodItem(AutoLogger.this, food);
 
                     startActivity(intentManual);
@@ -134,6 +139,72 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
             }
 
         } );
+    }
+
+    private void connectNutrionix(String foodName) {
+        StringEntity stringEntity = null;
+        AsyncHttpClient client = new AsyncHttpClient();
+        client.addHeader("x-app-id", "bc9bf73b");
+        client.addHeader("x-app-key", "a7ec465b35f9e9320eb17fd0f7dc3b46");
+        client.addHeader("x-remote-user-id", "0");
+        JSONObject jsonObject = new JSONObject();
+
+
+        try {
+            jsonObject.put("query", foodName);
+
+        } catch (JSONException e) {
+            Log.d("Healthier", e.toString());
+        }
+        try {
+            stringEntity = new StringEntity(jsonObject.toString());
+        } catch (UnsupportedEncodingException e) {
+            Log.d("Healthier", e.toString());
+        }
+
+        client.post(this, "https://trackapi.nutritionix.com/v2/natural/nutrients", stringEntity, "application/json",
+            new JsonHttpResponseHandler() {
+                @Override
+                public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {
+                    Log.d("Healthier", "Success" + response.toString());
+                    finishCalculate(response);
+                }
+
+                @Override
+                public void onFailure(int statusCode, cz.msebera.android.httpclient.Header[] headers, Throwable throwable, JSONObject errorResponse) {
+                    Log.d("Healthier", "failed" + errorResponse.toString());
+                    Toast.makeText(AutoLogger.this, "Sorry, We couldn't match any of your foods",
+                            Toast.LENGTH_SHORT).show();
+                }
+            });
+    }
+
+    protected void finishCalculate(final JSONObject jsonResult) {
+        StringBuilder foodName = new StringBuilder();
+        StringBuilder foodCal = new StringBuilder();
+
+        try {
+            JSONArray foods = jsonResult.getJSONArray("foods");
+            int i = 0;
+            while (!foods.isNull(i)) {
+
+                JSONObject eachFood = foods.getJSONObject(i);
+                foodName.append(eachFood.getString("food_name") + "\n");
+                foodCal.append(eachFood.getString("nf_calories")+ " Cal"+ '\n');
+//                totalCal += eachFood.getInt("nf_calories");
+                i++;
+            }
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+
+//        TextView listComponent = findViewById(R.id.textView3);
+//        listComponent.setText(foodName.toString());
+//
+//        TextView listCal = findViewById(R.id.textView4);
+//        listCal.setText(foodCal.toString());
+        System.out.println(foodName.toString());
+        System.out.println(foodCal.toString());
     }
 
     @Override
