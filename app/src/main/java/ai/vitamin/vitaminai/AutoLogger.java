@@ -71,7 +71,7 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
 
     public String brand_name = "Lays";
 
-    private static final String CLOUD_VISION_API_KEY = "AIzaSyDOjwC0hjlIN-CHLO8bTL6lFkbTpv5Cx2c";
+    private static final String CLOUD_VISION_API_KEY = "AIzaSyAAO5TG773UHzQQG3HROVm9L12U2pDo5dg";
 
     @BindView(R.id.btnCamera)
     Button takePicture;

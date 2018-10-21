@@ -14,11 +14,12 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="User Information"
+        android:fontFamily="sans-serif-condensed"
         android:gravity="center"
         android:padding="0dp"
+        android:text="User Information"
         android:textColor="@color/white"
-        android:textSize="30sp"/>
+        android:textSize="30sp" />
 
     <ImageView
         android:layout_width="320sp"

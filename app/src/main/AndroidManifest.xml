@@ -33,7 +33,8 @@
             android:authorities="ai.vitamin.vitaminai"
             android:exported="false" />
 
-        <activity android:name=".ManualLogger"></activity>
+        <activity android:name=".ManualLogger" />
+        <activity android:name=".Intro"></activity>
     </application>
 
 </manifest>

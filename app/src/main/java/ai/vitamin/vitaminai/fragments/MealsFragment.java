@@ -135,9 +135,11 @@ public class MealsFragment extends Fragment {
 
 //        // TIMELINE
         System.out.println(Integer.toString(meal_names.size()));
+        Log.v(MealsFragment.class.getSimpleName(), "Size: " + meal_names.size());
         for(row = 0; row < meal_names.size(); row++) {
             timelineRowsList.add(createRandomTimelineRow(row));
         }
+
 
         myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
                 //if true, list will be sorted by date

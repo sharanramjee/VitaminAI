@@ -12,6 +12,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
+import ai.vitamin.vitaminai.fragments.MealsFragment;
 import ai.vitamin.vitaminai.objects.Food;
 
 public class DataMethod {
@@ -68,16 +69,17 @@ public class DataMethod {
         contentValues.put(DataContract.Food.COLUMN_CONSUMED, portion);
         contentValues.put(DataContract.Food.COLUMN_CALORIES, totalCalories);
         contentValues.put(DataContract.Food.COLUMN_FAT, totalFats);
-
+        Log.v(DataMethod.class.getSimpleName(), "Food added");
         context.getContentResolver().insert(DataContract.Food.EVENT_CONTENT_URI, contentValues);
     }
 
     public static ArrayList<ArrayList<String>> getUIElements(Context context, Date date){
         ArrayList<ArrayList<String>> formattingIt = new ArrayList<>();
         ArrayList<Food> allFoods = getAllFood(context, date);
+        Log.v(DataMethod.class.getSimpleName(), "Size: " + allFoods.size());
         for (int i = 0; i < 4; i++){
             ArrayList<String> temp = new ArrayList<>();
-            for (int j = 0; j < temp.size(); j++){
+            for (int j = 0; j < allFoods.size(); j++){
                 temp.add(allFoods.get(j).getValue(i));
             }
             formattingIt.add(temp);
