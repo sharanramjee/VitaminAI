@@ -57,6 +57,7 @@ public class MealsFragment extends Fragment {
     private View view;
 
     ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
+    ArrayAdapter<TimelineRow> myAdapter;
     public static Integer row;
     public Integer resID;
 
@@ -127,12 +128,12 @@ public class MealsFragment extends Fragment {
             }
         });
 
-        Log.v(MealsFragment.class.getSimpleName(), "Size of Meals: " + meal_names.size());
+        System.out.println(meal_names.size());
         for(int i = 0; i < meal_names.size(); i++) {
             timelineRowsList.add(createRandomTimelineRow(i));
         }
 
-        ArrayAdapter<TimelineRow> myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
+        myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
                 //if true, list will be sorted by date
                 true);
 
@@ -183,17 +184,15 @@ public class MealsFragment extends Fragment {
         // Create new timeline row (pass your Id)
         TimelineRow myRow = new TimelineRow(id);
 
-        Date new_date = new Date();
-
         //to set the row Date (optional)
-//        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
-//        Date date = new Date();
-//        try {
-//            date = sdf.parse(HomePage.dates.get(id));
-//        } catch (ParseException e) {
-//            e.printStackTrace();
-//        }
-        myRow.setDate(new_date);
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+        Date date = new Date();
+        try {
+            date = sdf.parse(meal_times.get(id));
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+        myRow.setDate(date);
 
         //to set the row Title (optional)
         myRow.setTitle(meal_names.get(id));
