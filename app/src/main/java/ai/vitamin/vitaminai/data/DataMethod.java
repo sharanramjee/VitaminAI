@@ -12,7 +12,6 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Locale;
 
-import ai.vitamin.vitaminai.fragments.MealsFragment;
 import ai.vitamin.vitaminai.objects.Food;
 
 public class DataMethod {
@@ -22,6 +21,7 @@ public class DataMethod {
         SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.US);
         SimpleDateFormat month = new SimpleDateFormat("M", Locale.US);
         SimpleDateFormat day = new SimpleDateFormat("d", Locale.US);
+        SimpleDateFormat min = new SimpleDateFormat("m", Locale.US);
         String selection = DataContract.Food.COLUMN_TIME_YEAR + "=? AND "
                 + DataContract.Food.COLUMN_TIME_MONTH + "=? AND "
                 + DataContract.Food.COLUMN_TIME_DAY + "=?"  ;
@@ -37,12 +37,13 @@ public class DataMethod {
             int d = cursor.getInt(DataContract.Food.COLUMN_TIME_DAY_INDEX);
             int y = cursor.getInt(DataContract.Food.COLUMN_TIME_YEAR_INDEX);
             int h = cursor.getInt(DataContract.Food.COLUMN_TIME_HOUR_INDEX);
+            int mi = cursor.getInt(DataContract.Food.COLUMN_TIME_MIN_INDEX);
             String n = cursor.getString(DataContract.Food.COLUMN_FOOD_NAME_ARRAY_INDEX);
             double consum = cursor.getInt(DataContract.Food.COLUMN_AMOUNT_CONSUMED_INDEX);
             double calor = cursor.getInt(DataContract.Food.COLUMN_CALORIES_INDEX);
             double fat = cursor.getInt(DataContract.Food.COLUMN_COLUMN_FAT);
             Calendar calendar = Calendar.getInstance();
-            calendar.set(y, m, d,h,0);
+            calendar.set(y, m, d, h, mi);
 
             Food temp = new Food(id, calendar.getTimeInMillis(), n, consum, calor, fat);
             foodItems.add(temp);
@@ -55,9 +56,10 @@ public class DataMethod {
         SimpleDateFormat month = new SimpleDateFormat("M", Locale.US);
         SimpleDateFormat day = new SimpleDateFormat("d", Locale.US);
         SimpleDateFormat hour = new SimpleDateFormat("k", Locale.US);
+        SimpleDateFormat min = new SimpleDateFormat("m", Locale.US);
         Date date = new Date(food.getLongTime());
         String name = food.getName();
-        double portion = food.getPorition();
+        double portion = food.getPortion();
         double totalCalories = food.getTotalCalories();
         double totalFats = food.getTotalFat();
         ContentValues contentValues = new ContentValues();
@@ -65,11 +67,11 @@ public class DataMethod {
         contentValues.put(DataContract.Food.COLUMN_TIME_DAY, day.format(date));
         contentValues.put(DataContract.Food.COLUMN_TIME_YEAR, year.format(date));
         contentValues.put(DataContract.Food.COLUMN_TIME_HOUR, hour.format(date));
+        contentValues.put(DataContract.Food.COLUMN_TIME_MIN, min.format(date));
         contentValues.put(DataContract.Food.COLUMN_FOOD_NAME, name);
         contentValues.put(DataContract.Food.COLUMN_CONSUMED, portion);
         contentValues.put(DataContract.Food.COLUMN_CALORIES, totalCalories);
         contentValues.put(DataContract.Food.COLUMN_FAT, totalFats);
-        Log.v(DataMethod.class.getSimpleName(), "Food added");
         context.getContentResolver().insert(DataContract.Food.EVENT_CONTENT_URI, contentValues);
     }
 

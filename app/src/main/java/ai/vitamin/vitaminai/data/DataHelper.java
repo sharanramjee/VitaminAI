@@ -25,6 +25,7 @@ public class DataHelper extends SQLiteOpenHelper {
                 Food.COLUMN_TIME_DAY + " LONG NOT NULL, " +
                 Food.COLUMN_TIME_YEAR + " LONG NOT NULL, " +
                 Food.COLUMN_TIME_HOUR + " LONG NOT NULL, " +
+                Food.COLUMN_TIME_MIN + " LONG NOT NULL, " +
                 Food.COLUMN_FOOD_NAME + " TEXT NOT NULL, " +
                 Food.COLUMN_CONSUMED + " REAL NOT NULL, " +
                 Food.COLUMN_CALORIES + " REAL NOT NULL, " +
