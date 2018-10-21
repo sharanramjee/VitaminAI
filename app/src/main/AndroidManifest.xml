@@ -30,7 +30,7 @@
 
         <provider
             android:name=".data.DataProvider"
-            android:authorities="ai.vitamin.vitaminai.data.DataProvider"
+            android:authorities="ai.vitamin.vitaminai"
             android:exported="false" />
 
         <activity android:name=".ManualLogger"></activity>
