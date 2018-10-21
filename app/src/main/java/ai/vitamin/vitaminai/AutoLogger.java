@@ -152,7 +152,7 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
             Log.d("Healthier", e.toString());
         }
 
-        client.post(this, "https://trackapi.nutritionix.com/v2/natural/nutrients", stringEntity, "application/json",
+        client.get(this, "https://trackapi.nutritionix.com/v2/natural/nutrients", stringEntity, "application/json",
             new JsonHttpResponseHandler() {
                 @Override
                 public void onSuccess(int statusCode, cz.msebera.android.httpclient.Header[] headers, JSONObject response) {

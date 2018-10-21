@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:map="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/map"
+
+    android:layout_width="270dp"
+    android:layout_height="270dp"
+    android:textAlignment="center"
+    android:layout_gravity="center"
+    tools:context=".MapsActivity"
+    android:orientation="horizontal" />
+
