@@ -137,7 +137,7 @@ public class MealsFragment extends Fragment {
                 //if true, list will be sorted by date
                 true);
 
-        Log.v(MealsFragment.class.getSimpleName(), "Size of TimeLine: " + timelineRowsList.size());
+//        Log.v(MealsFragment.class.getSimpleName(), "Size of TimeLine: " + timelineRowsList.size());
         ListView myListView = view.findViewById(R.id.timeline_listView);
         myListView.setAdapter(myAdapter);
 

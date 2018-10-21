@@ -33,13 +33,37 @@
         fab:menu_labels_colorRipple="#ccffffff">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:id="@+id/add_food_fb"
+            android:id="@+id/add_food_auto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             fab:fab_stroke_visible="true"
-            fab:fab_title="Add Food to Tracker"
+            fab:fab_title="Add Meal using AI"
 
             android:src="@drawable/fab_add"
+            fab:fab_colorNormal="@color/colorAccent"
+            fab:fab_colorPressed="@color/colorAccent"
+            fab:fab_colorRipple="@color/colorAccent"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/add_food_manual"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_stroke_visible="true"
+            fab:fab_title="Add Meal Manually"
+
+            android:src="@drawable/fab_add"
+            fab:fab_colorNormal="@color/colorAccent"
+            fab:fab_colorPressed="@color/colorAccent"
+            fab:fab_colorRipple="@color/colorAccent"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/open_maps"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_stroke_visible="true"
+            fab:fab_title="Go for a Run"
+
+            android:src="@drawable/ic_remove_black_24dp"
             fab:fab_colorNormal="@color/colorAccent"
             fab:fab_colorPressed="@color/colorAccent"
             fab:fab_colorRipple="@color/colorAccent"/>
