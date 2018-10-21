@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
+import android.util.Log;
 
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -20,8 +21,8 @@ public class DataMethod {
         SimpleDateFormat year = new SimpleDateFormat("yyyy", Locale.US);
         SimpleDateFormat month = new SimpleDateFormat("M", Locale.US);
         SimpleDateFormat day = new SimpleDateFormat("d", Locale.US);
-        String selection = DataContract.Food.COLUMN_TIME_DAY + "=? AND "
-            + DataContract.Food.COLUMN_TIME_DAY + "=? AND "
+        String selection = DataContract.Food.COLUMN_TIME_YEAR + "=? AND "
+                + DataContract.Food.COLUMN_TIME_MONTH + "=? AND "
                 + DataContract.Food.COLUMN_TIME_DAY + "=?"  ;
         String[] selectionArgs = new String[]{year.format(date), month.format(date), day.format(date)};
         ArrayList<Food> foodItems = new ArrayList<>();
