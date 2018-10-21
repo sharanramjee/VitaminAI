@@ -7,6 +7,7 @@ import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v4.app.Fragment;
@@ -75,8 +76,11 @@ public class HomeFragment extends Fragment implements SensorEventListener {
         goForRun.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent3 = new Intent(getContext(), MapsActivity.class);
-               startActivity(intent3);
+                // Search for restaurants nearby
+                Uri gmmIntentUri = Uri.parse("geo:0,0?q=restaurants");
+                Intent mapIntent = new Intent(Intent.ACTION_VIEW, gmmIntentUri);
+                mapIntent.setPackage("com.google.android.apps.maps");
+                startActivity(mapIntent);
             }
         });
 

@@ -27,6 +27,24 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     private GoogleMap mMap;
     private float thexcor;
     private float theycor;
+
+    public class Coordinate{
+        private double lattitude;
+        private double longititude;
+
+        public Coordinate(double lattitude, double longititude){
+            this.lattitude = lattitude; this.longititude = longititude;
+        }
+
+        public double getLongititude() {
+            return longititude;
+        }
+
+        public double getLattitude() {
+            return lattitude;
+        }
+    }
+
     void get_cordinates(){
         StringEntity stringEntity = null;
         AsyncHttpClient client = new AsyncHttpClient();
