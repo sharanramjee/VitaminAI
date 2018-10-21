@@ -1,3 +1,4 @@
+/*
 package ai.vitamin.vitaminai.fragments;
 
 import android.annotation.SuppressLint;
@@ -218,3 +219,4 @@ public class MealsFragment extends Fragment {
         return myRow;
     }
 }
+*/

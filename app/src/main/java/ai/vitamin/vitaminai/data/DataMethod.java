@@ -71,8 +71,16 @@ public class DataMethod {
         context.getContentResolver().insert(DataContract.Food.EVENT_CONTENT_URI, contentValues);
     }
 
-//    public ArrayList<ArrayList<String>> getUIElements(Context context, Date date){
-//        ArrayList<ArrayList<String>> formattingIt = new ArrayList<>();
-//        for (int i = 0; i < )
-//    }
+    public ArrayList<ArrayList<String>> getUIElements(Context context, Date date){
+        ArrayList<ArrayList<String>> formattingIt = new ArrayList<>();
+        ArrayList<Food> allFoods = getAllFood(context, date);
+        for (int i = 0; i < 4; i++){
+            ArrayList<String> temp = new ArrayList<>();
+            for (int j = 0; j < temp.size(); j++){
+                temp.add(allFoods.get(j).getValue(i));
+            }
+            formattingIt.add(temp);
+        }
+        return formattingIt;
+    }
 }

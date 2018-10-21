@@ -90,4 +90,14 @@ public class Food {
     public double getTotalFat(){
         return totalFats;
     }
+
+    public String getValue(int pos){
+        switch (pos){
+            case 0: return getTime();
+            case 1: return name;
+            case 2: return getItemCalories();
+            case 3: return getItemFats();
+        }
+        return "";
+    }
 }
