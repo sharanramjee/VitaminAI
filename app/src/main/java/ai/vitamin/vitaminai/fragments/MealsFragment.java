@@ -11,6 +11,8 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.LinearLayoutManager;
+import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -32,6 +34,8 @@ import java.util.Objects;
 import java.util.Random;
 import ai.vitamin.vitaminai.R;
 import ai.vitamin.vitaminai.data.DataMethod;
+import ai.vitamin.vitaminai.objects.Food;
+import ai.vitamin.vitaminai.recycleview.MealAdapter;
 
 
 public class MealsFragment extends Fragment {
@@ -52,6 +56,8 @@ public class MealsFragment extends Fragment {
     public Integer resID;
     ListView myListView;
 
+    private MealAdapter mealAdapter;
+
     public MealsFragment() {
     }
 
@@ -70,6 +76,12 @@ public class MealsFragment extends Fragment {
         view = inflater.inflate(R.layout.fragment_meals, container, false); //the entire view for meal fragment
         toolbar = view.findViewById(R.id.calendar_toolbar); //the toolbar of the view
         CalendarView calendarView = view.findViewById(R.id.calendar_cv); //the calendar view
+
+        //setting up adapter
+        RecyclerView recyclerView = view.findViewById(R.id.meals_recycle_view);
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        mealAdapter = new MealAdapter(getContext(), new ArrayList<Food>());
+        recyclerView.setAdapter(mealAdapter);
 
         //setting up Action Bar as the Supporting action bar
         ((AppCompatActivity) Objects.requireNonNull(getActivity())).setSupportActionBar(toolbar);
@@ -110,65 +122,71 @@ public class MealsFragment extends Fragment {
                 appBarLayout.setExpanded(false);
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(year, month, date);
-                Log.v(MealsFragment.class.getSimpleName(), calendar.toString());
-                updateView(calendarView);
+                Log.v(MealsFragment.class.getSimpleName(), new Date(calendar.getTimeInMillis()).toString());
+                updateView(calendar.getTimeInMillis());
             }
         });
 
-        updateView(calendarView);
+        updateView(Calendar.getInstance().getTimeInMillis());
 
-        myListView.setOnScrollListener(new AbsListView.OnScrollListener() {
-            private int currentVisibleItemCount;
-            private int currentScrollState;
-            private int currentFirstVisibleItem;
-            private int totalItem;
-            private LinearLayout lBelow;
-
-
-            @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-                this.currentScrollState = scrollState;
-            }
-
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem,
-                                 int visibleItemCount, int totalItemCount) {
-                this.currentFirstVisibleItem = firstVisibleItem;
-                this.currentVisibleItemCount = visibleItemCount;
-                this.totalItem = totalItemCount;
-            }
-        });
+//        myListView.setOnScrollListener(new AbsListView.OnScrollListener() {
+//            private int currentVisibleItemCount;
+//            private int currentScrollState;
+//            private int currentFirstVisibleItem;
+//            private int totalItem;
+//            private LinearLayout lBelow;
+//
+//
+//            @Override
+//            public void onScrollStateChanged(AbsListView view, int scrollState) {
+//                this.currentScrollState = scrollState;
+//            }
+//
+//            @Override
+//            public void onScroll(AbsListView view, int firstVisibleItem,
+//                                 int visibleItemCount, int totalItemCount) {
+//                this.currentFirstVisibleItem = firstVisibleItem;
+//                this.currentVisibleItemCount = visibleItemCount;
+//                this.totalItem = totalItemCount;
+//            }
+//        });
 
         return view;
     }
 
-    public void updateView(CalendarView calendarView){
-        meals = DataMethod.getUIElements(getContext(), new Date(calendarView.getDate()));
-        meal_times = meals.get(0);
-        meal_names = meals.get(1);
-        meal_calories = meals.get(2);
-        timelineRowsList.clear();
+    public void updateView(long time){
+        ArrayList<Food> allFood = DataMethod.getAllFood(getContext(), new Date(time));
+        mealAdapter.setValues(allFood);
 
-        for(int i = 0; i < meal_names.size(); i++) {
-            timelineRowsList.add(createRandomTimelineRow(i));
-        }
-
-        if (myAdapter != null){
-            myAdapter.clear();
-        }
-
-        if (meal_names.size() == 0){
-            return;
-        }
-
-        myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
-                //if true, list will be sorted by date
-                true);
-
-        Log.v(MealsFragment.class.getSimpleName(), "Size of TimeLine: " + timelineRowsList.size());
-        myListView = view.findViewById(R.id.timeline_listView);
-        myListView.setAdapter(myAdapter);
     }
+
+//    public void updateView(CalendarView calendarView){
+//        meals = DataMethod.getUIElements(getContext(), new Date(calendarView.getDate()));
+//        meal_times = meals.get(0);
+//        meal_names = meals.get(1);
+//        meal_calories = meals.get(2);
+//        timelineRowsList.clear();
+//
+//        for(int i = 0; i < meal_names.size(); i++) {
+//            timelineRowsList.add(createRandomTimelineRow(i));
+//        }
+//
+//        if (myAdapter != null){
+//            myAdapter.clear();
+//        }
+//
+//        if (meal_names.size() == 0){
+//            return;
+//        }
+//
+//        myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
+//                //if true, list will be sorted by date
+//                true);
+//
+//        Log.v(MealsFragment.class.getSimpleName(), "Size of TimeLine: " + timelineRowsList.size());
+//        myListView = view.findViewById(R.id.timeline_listView);
+//        myListView.setAdapter(myAdapter);
+//    }
 
     //Method to create new Timeline Row
     private TimelineRow createRandomTimelineRow(int id) {

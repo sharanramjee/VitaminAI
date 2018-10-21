@@ -1,6 +1,9 @@
 package ai.vitamin.vitaminai.recycleview;
 
+import android.annotation.SuppressLint;
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.BitmapFactory;
 import android.graphics.drawable.GradientDrawable;
 import android.support.annotation.NonNull;
 import android.support.v4.content.ContextCompat;
@@ -8,9 +11,11 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import ai.vitamin.vitaminai.objects.Food;
 import ai.vitamin.vitaminai.R;
@@ -36,10 +41,22 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewModel>
     @Override
     public void onBindViewHolder(@NonNull MealViewModel MealViewModel, final int i) {
         Food item = allFoods.get(i);
-        MealViewModel.mTime.setText(item.getTime());
-        ((GradientDrawable) MealViewModel.mTime.getBackground()).setColor(getMealTimeColor(context, item.getIntensity()));
+        MealViewModel.mTime.setText("Time Eatened: " + item.getTime());
         MealViewModel.mName.setText(item.getName());
-        MealViewModel.mCal.setText(item.getItemCalories());
+        MealViewModel.mCal.setText("Number of calories: " + item.getItemCalories() + "cals");
+
+        //setting the image
+        @SuppressLint("Recycle")
+        TypedArray imgs = context.getResources().obtainTypedArray(R.array.random_images_array);
+        final Random rand = new Random();
+        final int rndInt = rand.nextInt(imgs.length());
+        final int resID = imgs.getResourceId(rndInt, 0);
+        MealViewModel.mImage.setImageBitmap(BitmapFactory.decodeResource(context.getResources(), resID));
+    }
+
+    public void setValues(ArrayList<Food> allFoods){
+        this.allFoods = allFoods;
+        notifyDataSetChanged();
     }
 
     private int getMealTimeColor(Context context, int mag){
@@ -122,6 +139,7 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewModel>
     }
 
 
+
     @Override
     public int getItemCount() {
         return allFoods.size();
@@ -129,17 +147,17 @@ public class MealAdapter extends RecyclerView.Adapter<MealAdapter.MealViewModel>
 
     class MealViewModel extends RecyclerView.ViewHolder{
 
+        ImageView mImage;
         TextView mTime;
         TextView mName;
         TextView mCal;
-        View view;
 
         MealViewModel(@NonNull View itemView) {
             super(itemView);
             mTime = itemView.findViewById(R.id.item_meal_time);
             mName = itemView.findViewById(R.id.item_meal_name);
-            mCal = itemView.findViewById(R.id.item_meal_cal);
-            view = itemView;
+            mCal = itemView.findViewById(R.id.item_meal_calories);
+            mImage = itemView.findViewById(R.id.item_image);
         }
     }
 
