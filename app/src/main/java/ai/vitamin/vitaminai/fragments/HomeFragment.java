@@ -25,6 +25,7 @@ import ai.vitamin.vitaminai.AutoLogger;
 import ai.vitamin.vitaminai.ManualLogger;
 import ai.vitamin.vitaminai.MapsActivity;
 import ai.vitamin.vitaminai.R;
+import ai.vitamin.vitaminai.UpdateWeight;
 
 public class HomeFragment extends Fragment implements SensorEventListener {
 
@@ -76,6 +77,16 @@ public class HomeFragment extends Fragment implements SensorEventListener {
             public void onClick(View view) {
                 Intent intent3 = new Intent(getContext(), MapsActivity.class);
                startActivity(intent3);
+            }
+        });
+
+        FloatingActionButton updateWeight = view.findViewById(R.id.update_weight); //options for the floating action button
+        //behavior for floating action buttons
+        goForRun.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent4 = new Intent(getContext(), UpdateWeight.class);
+                startActivity(intent4);
             }
         });
 

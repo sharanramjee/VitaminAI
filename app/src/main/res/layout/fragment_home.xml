@@ -138,6 +138,18 @@
             fab:fab_colorPressed="@color/colorAccent"
             fab:fab_colorRipple="@color/colorAccent"/>
 
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:id="@+id/update_weight"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            fab:fab_stroke_visible="true"
+            fab:fab_title="Update Weight"
+
+            android:src="@drawable/ic_person_black_24dp"
+            fab:fab_colorNormal="@color/colorAccent"
+            fab:fab_colorPressed="@color/colorAccent"
+            fab:fab_colorRipple="@color/colorAccent"/>
+
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 

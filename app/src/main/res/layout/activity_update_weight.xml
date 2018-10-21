@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.v7.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@drawable/green_back"
+    tools:context=".UpdateWeight">
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="45dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Update Weight"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="30sp"
+        />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="120dp"
+        android:background="@android:color/transparent"
+        android:fontFamily="sans-serif-condensed"
+        android:text="Enter Weight (kg)"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        />
+
+    <TextView
+        android:id="@+id/weighttv"
+        android:layout_width="52dp"
+        android:layout_height="29dp"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <com.github.shchurov.horizontalwheelview.HorizontalWheelView
+        android:id="@+id/horizontalWheelView1"
+        android:layout_width="324dp"
+        android:layout_height="63dp"
+        android:paddingTop="32dp"
+        app:activeColor="@android:color/white"
+        app:normalColor="@android:color/white"
+        tools:activeColor="@android:color/white"
+        android:layout_gravity="center"/>
+
+    <Button
+        android:id="@+id/btnNext"
+        style="@style/Widget.AppCompat.Button"
+        android:layout_width="111dp"
+        android:layout_height="wrap_content"
+        android:background="@android:color/holo_green_dark"
+        android:fontFamily="sans-serif-condensed"
+        android:layout_marginTop="250dp"
+        android:text="Next"
+        android:layout_marginBottom="20dp"
+        android:textColor="@android:color/white"
+        android:typeface="normal"
+        android:layout_gravity="center"
+        />
+
+</android.support.v7.widget.LinearLayoutCompat>
