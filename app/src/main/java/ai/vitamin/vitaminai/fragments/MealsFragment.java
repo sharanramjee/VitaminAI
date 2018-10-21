@@ -57,7 +57,6 @@ public class MealsFragment extends Fragment {
     private View view;
 
     ArrayList<TimelineRow> timelineRowsList = new ArrayList<>();
-    ArrayAdapter<TimelineRow> myAdapter;
     public static Integer row;
     public Integer resID;
 
@@ -128,15 +127,16 @@ public class MealsFragment extends Fragment {
             }
         });
 
-        for(row = 0; row < meal_names.size(); row++) {
-            timelineRowsList.add(createRandomTimelineRow(row));
+        Log.v(MealsFragment.class.getSimpleName(), "Size of Meals: " + meal_names.size());
+        for(int i = 0; i < meal_names.size(); i++) {
+            timelineRowsList.add(createRandomTimelineRow(i));
         }
 
-
-        myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
+        ArrayAdapter<TimelineRow> myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
                 //if true, list will be sorted by date
                 true);
 
+        Log.v(MealsFragment.class.getSimpleName(), "Size of TimeLine: " + timelineRowsList.size());
         ListView myListView = view.findViewById(R.id.timeline_listView);
         myListView.setAdapter(myAdapter);
 
