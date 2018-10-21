@@ -19,10 +19,13 @@ import com.github.mikephil.charting.data.LineDataSet;
 
 import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Date;
 import java.util.Objects;
 
 import ai.vitamin.vitaminai.R;
+import ai.vitamin.vitaminai.data.DataMethod;
 import ai.vitamin.vitaminai.fragments.chartFragments.FragmentPageAdapter;
+import ai.vitamin.vitaminai.objects.Food;
 
 import static java.lang.Math.pow;
 
@@ -59,33 +62,38 @@ public class TrendFragment extends Fragment {
         {
             entriesw.add(new Entry(i, i));
         }
-        LineDataSet dataSet = new LineDataSet(entriesw, "Weight-Label");
-        weight.setData(new LineData(dataSet));
-        weight.invalidate();
+        if (entriesw.size() != 0) {
+            LineDataSet dataSet = new LineDataSet(entriesw, "Weight-Label");
+            weight.setData(new LineData(dataSet));
+            weight.invalidate();
+        }
 
         //BMI
         ArrayList<Entry> entriesbmi = new ArrayList<>();
         for (int i = 0;  i < 10; i++)
         {
-            entriesbmi.add(new Entry(i, i * i));
+            //entriesbmi.add(new Entry(i, i * i));
         }
-        LineDataSet dataSetbmi = new LineDataSet(entriesbmi, "BMI-Label");
-        bmi.setData(new LineData(dataSet));
-        bmi.invalidate();
+        if (entriesbmi.size() != 0) {
+            LineDataSet dataSetbmi = new LineDataSet(entriesbmi, "BMI-Label");
+            bmi.setData(new LineData(dataSetbmi));
+            bmi.invalidate();
+        }
 
         //calories
         ArrayList<Entry> entriesc = new ArrayList<>();
-        for (int i = 0;  i < 10; i++)
+        ArrayList<Food> allFood = DataMethod.getAllFood(getContext(), new Date());
+        double sum = 0;
+        for (int i = 0;  i < allFood.size(); i++)
         {
-            entriesc.add(new Entry(i, (float) (1.0 / pow(10, i)) ));
+            sum += allFood.get(i).getTotalCalories() * allFood.get(i).getPortion();
+            entriesc.add(new Entry(i, (float) sum));
         }
-        LineDataSet dataSetc = new LineDataSet(entriesc, "Calories-Label");
-        calories.setData(new LineData(dataSetc));
-        calories.invalidate();
-
-
-
-
+        if (entriesc.size() != 0) {
+            LineDataSet dataSetc = new LineDataSet(entriesc, "Calories-Label");
+            calories.setData(new LineData(dataSetc));
+            calories.invalidate();
+        }
 
     }
 

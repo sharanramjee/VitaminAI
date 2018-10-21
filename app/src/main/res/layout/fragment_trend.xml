@@ -37,7 +37,7 @@
         android:layout_weight="1"/>
 
     <TextView
-        android:text="Amount of Calories Eaten per Month"
+        android:text="Amount of Calories Eaten Today"
         android:textSize="22sp"
         android:gravity="center"
         android:textColor = "@color/white"
