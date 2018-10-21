@@ -43,7 +43,6 @@ import ai.vitamin.vitaminai.data.DataMethod;
 import ai.vitamin.vitaminai.objects.Food;
 import ai.vitamin.vitaminai.recycleview.MealAdapter;
 
-import static com.loopj.android.http.AsyncHttpClient.log;
 
 public class MealsFragment extends Fragment {
 
@@ -128,14 +127,7 @@ public class MealsFragment extends Fragment {
                 calendar.set(year, month, date);
             }
         });
-//        return view;
-//    }
-//}
 
-
-//        // TIMELINE
-        System.out.println(Integer.toString(meal_names.size()));
-        Log.v(MealsFragment.class.getSimpleName(), "Size: " + meal_names.size());
         for(row = 0; row < meal_names.size(); row++) {
             timelineRowsList.add(createRandomTimelineRow(row));
         }
@@ -192,7 +184,6 @@ public class MealsFragment extends Fragment {
         TimelineRow myRow = new TimelineRow(id);
 
         Date new_date = new Date();
-        System.out.println(new_date.toString());
 
         //to set the row Date (optional)
 //        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");

@@ -118,9 +118,7 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
                     quantity = Double.parseDouble(editText.getText().toString());
 
                     connectNutrionix(brand_name);
-                    Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, calories,0.0);
-//                    System.out.println(food.toString());
-                    DataMethod.addFoodItem(AutoLogger.this, food);
+
 
                     startActivity(intentManual);
 
@@ -190,6 +188,9 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
         }
         brand_name = foodName.toString();
         calories = Double.parseDouble(foodCal.toString()) / Double.parseDouble(foodWeight.toString());
+        Food food = new Food(Calendar.getInstance().getTimeInMillis(), brand_name, quantity, calories,0.0);
+//                    System.out.println(food.toString());
+        DataMethod.addFoodItem(AutoLogger.this, food);
 //        System.out.println(calories.toString());
     }
 
@@ -284,6 +285,7 @@ public class AutoLogger extends AppCompatActivity implements AdapterView.OnItemS
             }
         }.execute();
     }
+
 
     @NonNull
     private Image getImageEncodeImage(Bitmap bitmap) {
