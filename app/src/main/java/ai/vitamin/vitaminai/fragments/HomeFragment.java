@@ -23,7 +23,7 @@ import com.getbase.floatingactionbutton.FloatingActionsMenu;
 
 import ai.vitamin.vitaminai.AutoLogger;
 import ai.vitamin.vitaminai.ManualLogger;
-import ai.vitamin.vitaminai.fragments.MapsActivity;
+import ai.vitamin.vitaminai.MapsActivity;
 import ai.vitamin.vitaminai.R;
 
 public class HomeFragment extends Fragment implements SensorEventListener {
