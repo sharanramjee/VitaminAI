@@ -56,15 +56,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        FloatingActionButton goForRun = view.findViewById(R.id.open_maps); //options for the floating action button
-        //behavior for floating action buttons
-        goForRun.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent3 = new Intent(getContext(), MapsActivity.class);
-                startActivity(intent3);
-            }
-        });
+//        FloatingActionButton goForRun = view.findViewById(R.id.open_maps); //options for the floating action button
+//        //behavior for floating action buttons
+//        goForRun.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent3 = new Intent(getContext(), MapsActivity.class);
+//                startActivity(intent3);
+//            }
+//        });
 
 
         return view;
