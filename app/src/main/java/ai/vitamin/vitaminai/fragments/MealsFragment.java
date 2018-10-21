@@ -11,24 +11,18 @@ import android.support.design.widget.CollapsingToolbarLayout;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v4.app.Fragment;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.LinearLayoutManager;
-import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
-import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.CalendarView;
 import android.widget.LinearLayout;
 import android.support.v7.widget.Toolbar;
 import android.widget.ListView;
-import android.widget.Toast;
-
 import org.qap.ctimelineview.TimelineRow;
 import org.qap.ctimelineview.TimelineViewAdapter;
-
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
@@ -36,12 +30,8 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.Objects;
 import java.util.Random;
-import java.util.concurrent.TimeUnit;
-
 import ai.vitamin.vitaminai.R;
 import ai.vitamin.vitaminai.data.DataMethod;
-import ai.vitamin.vitaminai.objects.Food;
-import ai.vitamin.vitaminai.recycleview.MealAdapter;
 
 
 public class MealsFragment extends Fragment {
@@ -60,6 +50,7 @@ public class MealsFragment extends Fragment {
     ArrayAdapter<TimelineRow> myAdapter;
     public static Integer row;
     public Integer resID;
+    ListView myListView;
 
     public MealsFragment() {
     }
@@ -76,12 +67,6 @@ public class MealsFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-
-        meals = DataMethod.getUIElements(getContext(), new Date());
-        meal_times = meals.get(0);
-        meal_names = meals.get(1);
-        meal_calories = meals.get(2);
-
         view = inflater.inflate(R.layout.fragment_meals, container, false); //the entire view for meal fragment
         toolbar = view.findViewById(R.id.calendar_toolbar); //the toolbar of the view
         CalendarView calendarView = view.findViewById(R.id.calendar_cv); //the calendar view
@@ -125,21 +110,12 @@ public class MealsFragment extends Fragment {
                 appBarLayout.setExpanded(false);
                 Calendar calendar = Calendar.getInstance();
                 calendar.set(year, month, date);
+                Log.v(MealsFragment.class.getSimpleName(), calendar.toString());
+                updateView(calendarView);
             }
         });
 
-        System.out.println(meal_names.size());
-        for(int i = 0; i < meal_names.size(); i++) {
-            timelineRowsList.add(createRandomTimelineRow(i));
-        }
-
-        myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
-                //if true, list will be sorted by date
-                true);
-
-//        Log.v(MealsFragment.class.getSimpleName(), "Size of TimeLine: " + timelineRowsList.size());
-        ListView myListView = view.findViewById(R.id.timeline_listView);
-        myListView.setAdapter(myAdapter);
+        updateView(calendarView);
 
         myListView.setOnScrollListener(new AbsListView.OnScrollListener() {
             private int currentVisibleItemCount;
@@ -151,31 +127,47 @@ public class MealsFragment extends Fragment {
 
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
-                // TODO Auto-generated method stub
                 this.currentScrollState = scrollState;
             }
 
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem,
                                  int visibleItemCount, int totalItemCount) {
-                // TODO Auto-generated method stub
                 this.currentFirstVisibleItem = firstVisibleItem;
                 this.currentVisibleItemCount = visibleItemCount;
                 this.totalItem = totalItemCount;
             }
         });
 
-//        //if you wish to handle the clicks on the rows
-//        AdapterView.OnItemClickListener adapterListener = new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                TimelineRow row = timelineRowsList.get(position);
-//                Toast.makeText(MealsFragment.this, row.getTitle(), Toast.LENGTH_SHORT).show();
-//            }
-//        };
-//        myListView.setOnItemClickListener(adapterListener);
-
         return view;
+    }
+
+    public void updateView(CalendarView calendarView){
+        meals = DataMethod.getUIElements(getContext(), new Date(calendarView.getDate()));
+        meal_times = meals.get(0);
+        meal_names = meals.get(1);
+        meal_calories = meals.get(2);
+        timelineRowsList.clear();
+
+        for(int i = 0; i < meal_names.size(); i++) {
+            timelineRowsList.add(createRandomTimelineRow(i));
+        }
+
+        if (myAdapter != null){
+            myAdapter.clear();
+        }
+
+        if (meal_names.size() == 0){
+            return;
+        }
+
+        myAdapter = new TimelineViewAdapter(getContext(), 0, timelineRowsList,
+                //if true, list will be sorted by date
+                true);
+
+        Log.v(MealsFragment.class.getSimpleName(), "Size of TimeLine: " + timelineRowsList.size());
+        myListView = view.findViewById(R.id.timeline_listView);
+        myListView.setAdapter(myAdapter);
     }
 
     //Method to create new Timeline Row
