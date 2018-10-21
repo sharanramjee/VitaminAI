@@ -100,4 +100,8 @@ public class Food {
         }
         return "";
     }
+
+    public void setDate(){
+        date = Calendar.getInstance().getTimeInMillis();
+    }
 }

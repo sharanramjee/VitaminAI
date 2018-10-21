@@ -36,10 +36,11 @@ public class DataHelper extends SQLiteOpenHelper {
                 Charts._ID + " INTEGER PRIMARY KEY, " +
                 Charts.COLUMN_MONTH + " INTEGER NOT NULL, " +
                 Charts.COLUMN_YEAR + " INTEGER NOT NULL, " +
-                Charts.COLUMN_COUNT + " INTEGER NOT NULL, " +
+                Charts.COLUMN_DAY + " INTEGER NOT NULL, " +
+                Charts.COLUMN_HOUR + " INTEGER NOT NULL, "+
+                Charts.COLUMN_MIN + " INTEGER NOT NULL, "+
                 Charts.COLUMN_WEIGHT + " REAL NOT NULL, "+
-                Charts.COLUMN_HEIGHT + " REAL NOT NULL, "+
-                Charts.COLUMN_CALORIES + " REAL NOT NULL);";
+                Charts.COLUMN_HEIGHT + " REAL NOT NULL);";
         db.execSQL(TODAY_MENU_CREATE_TABLE);
 
     }

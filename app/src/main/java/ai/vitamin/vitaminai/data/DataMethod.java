@@ -13,6 +13,7 @@ import java.util.Date;
 import java.util.Locale;
 
 import ai.vitamin.vitaminai.objects.Food;
+import ai.vitamin.vitaminai.objects.Weight;
 
 public class DataMethod {
 
@@ -39,9 +40,9 @@ public class DataMethod {
             int h = cursor.getInt(DataContract.Food.COLUMN_TIME_HOUR_INDEX);
             int mi = cursor.getInt(DataContract.Food.COLUMN_TIME_MIN_INDEX);
             String n = cursor.getString(DataContract.Food.COLUMN_FOOD_NAME_ARRAY_INDEX);
-            double consum = cursor.getInt(DataContract.Food.COLUMN_AMOUNT_CONSUMED_INDEX);
-            double calor = cursor.getInt(DataContract.Food.COLUMN_CALORIES_INDEX);
-            double fat = cursor.getInt(DataContract.Food.COLUMN_COLUMN_FAT);
+            double consum = cursor.getDouble(DataContract.Food.COLUMN_AMOUNT_CONSUMED_INDEX);
+            double calor = cursor.getDouble(DataContract.Food.COLUMN_CALORIES_INDEX);
+            double fat = cursor.getDouble(DataContract.Food.COLUMN_COLUMN_FAT);
             Calendar calendar = Calendar.getInstance();
             calendar.set(y, m, d, h, mi);
 
@@ -87,5 +88,29 @@ public class DataMethod {
             formattingIt.add(temp);
         }
         return formattingIt;
+    }
+
+    public static ArrayList<Weight> getAllWeight(Context context){
+        ArrayList<Weight> allweight = new ArrayList<>();
+        Cursor cursor = context.getContentResolver().query(DataContract.Food.EVENT_CONTENT_URI, DataContract.Food.PROJECTION_ARRAY, null, null, null);
+        assert cursor != null;
+        cursor.moveToPosition(-1);
+        while(cursor.moveToNext()){
+            int id = cursor.getInt(DataContract.Charts.COLUMN_ID_ARRAY_INDEX);
+            int m = cursor.getInt(DataContract.Charts.COLUMN_MONTH_INDEX);
+            int y = cursor.getInt(DataContract.Charts.COLUMN_YEAR_INDEX);
+            int d = cursor.getInt(DataContract.Charts.COLUMN_DAY_INDEX);
+            int h = cursor.getInt(DataContract.Charts.COLUMN_HOUR_INDEX);
+            int min = cursor.getInt(DataContract.Charts.COLUMN_MIN_INDEX);
+            double weight = cursor.getDouble(DataContract.Charts.COLUMN_WEIGHT_INDEX);
+            double height = cursor.getDouble(DataContract.Charts.COLUMN_HEIGHT_INDEX);
+
+            Calendar calendar = Calendar.getInstance();
+            calendar.set(y, m, d, h, min);
+
+            Weight temp = new Weight(id, calendar.getTimeInMillis(), height, weight);
+            allweight.add(temp);
+        }
+        return allweight;
     }
 }

@@ -68,30 +68,33 @@ public class DataContract {
         //column name
         public static final String COLUMN_MONTH = "month";
         public static final String COLUMN_YEAR ="year";
-        public static final String COLUMN_COUNT = "count";
+        public static final String COLUMN_DAY = "day";
+        public static final String COLUMN_HOUR = "hour";
+        public static final String COLUMN_MIN = "min";
         public static final String COLUMN_WEIGHT ="weight";
         public static final String COLUMN_HEIGHT = "height";
-        public static final String COLUMN_CALORIES ="calories";
 
         //the array for the database
         public static final String[] PROJECTION_ARRAY = {
                 Charts._ID,
                 COLUMN_MONTH,
                 COLUMN_YEAR,
-                COLUMN_COUNT,
+                COLUMN_DAY,
+                COLUMN_HOUR,
+                COLUMN_MIN,
                 COLUMN_WEIGHT,
                 COLUMN_HEIGHT,
-                COLUMN_CALORIES
         };
 
         //The int index
         public static final int COLUMN_ID_ARRAY_INDEX = 0;
         public static final int COLUMN_MONTH_INDEX = 1;
         public static final int COLUMN_YEAR_INDEX = 2;
-        public static final int COLUMN_COUNT_INDEX = 3;
-        public static final int COLUMN_WEIGNT_INDEX = 4;
-        public static final int COLUMN_HEIGHT_INDEX = 5;
-        public static final int COLUMN_CALORIES_INDEX = 6;
+        public static final int COLUMN_DAY_INDEX = 3;
+        public static final int COLUMN_HOUR_INDEX = 4;
+        public static final int COLUMN_MIN_INDEX = 5;
+        public static final int COLUMN_WEIGHT_INDEX = 6;
+        public static final int COLUMN_HEIGHT_INDEX = 7;
 
     }
 }
