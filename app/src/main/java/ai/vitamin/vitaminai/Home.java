@@ -38,18 +38,6 @@ public class Home extends AppCompatActivity implements BottomNavigationView.OnNa
 
         //displaying the first view -> navigation home
         loadFragment(HomeFragment.newInstance());
-
-        //adding element into database
-        Food temp = new Food(Calendar.getInstance().getTimeInMillis(),
-                "Name of the Food",
-                2,
-                300,
-                50);
-        Food temp1 = new Food(Calendar.getInstance().getTimeInMillis(),
-                "Name of the Food",
-                3,
-                400,
-                20);
     }
 
     @Override
